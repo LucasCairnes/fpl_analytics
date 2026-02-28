@@ -2,6 +2,9 @@ import os
 from google.cloud import storage
 from datetime import date
 from google.oauth2 import service_account
+import pandas as pd
+import pandas_gbq
+import io
 
 def get_fpl_bucket():
     bucket_name = "fpl-analytics-data-lake"
@@ -11,7 +14,7 @@ def get_fpl_bucket():
     
     return client.bucket(bucket_name)
 
-def get_fpl_api_paths(requested_paths):
+def get_fpl_paths(requested_paths):
     if not requested_paths:
         requested_paths = ["all"]
 
@@ -35,9 +38,3 @@ def dig(data, indices):
     for index in indices:
         data = data[index]
     return data
-
-def get_credentials():
-    return service_account.Credentials.from_service_account_file("/Users/sparelaptop4/Documents/fpl_analytics/extract/storage_admin_key.json")
-
-
-

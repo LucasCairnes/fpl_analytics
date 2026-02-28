@@ -3,7 +3,7 @@ import requests
 from google.cloud import storage
 from google.api_core import exceptions
 
-from extract.gcp_auth import get_fpl_bucket, get_fpl_api_paths, dig
+from extract.gcs_functions import get_fpl_bucket, get_fpl_paths, dig
 
 def fetch_fpl_data():
     print("Fetching FPL data...")
@@ -40,7 +40,7 @@ def run_fpl_pipeline():
     raw_data = fetch_fpl_data()
     if raw_data:
         bucket = get_fpl_bucket()
-        for path in get_fpl_api_paths(["all"]):
+        for path in get_fpl_paths(["all"]):
             load_to_storage(bucket, path[0], dig(raw_data, path[1]))
 
 if __name__ == "__main__":
