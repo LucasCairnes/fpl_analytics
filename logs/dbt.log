@@ -1,0 +1,33 @@
+[0m11:11:04.238466 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x122568ec0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1239b39d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1239b3750>]}
+
+
+============================== 11:11:04.241545 | 3f9c95ac-a39e-452a-8a10-3f48367bcf0c ==============================
+[0m11:11:04.241545 [info ] [MainThread]: Running with dbt=1.11.6
+[0m11:11:04.241862 [debug] [MainThread]: running dbt with arguments {'profiles_dir': '/Users/sparelaptop4/.dbt', 'log_path': 'logs', 'log_format': 'default', 'cache_selected_only': 'False', 'no_print': 'None', 'log_cache_events': 'False', 'static_parser': 'True', 'quiet': 'False', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'printer_width': '80', 'debug': 'False', 'warn_error': 'None', 'invocation_command': 'dbt init fpl_pipeline', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'version_check': 'True', 'introspect': 'True', 'use_colors': 'True', 'fail_fast': 'False', 'send_anonymous_usage_stats': 'True', 'write_json': 'True', 'partial_parse': 'True', 'empty': 'None', 'target_path': 'None'}
+[0m11:11:04.251559 [info ] [MainThread]: Creating dbt configuration folder at /Users/sparelaptop4/.dbt
+[0m11:11:04.252457 [debug] [MainThread]: Starter project path: /opt/anaconda3/envs/fpl/lib/python3.13/site-packages/dbt/include/starter_project
+[0m11:11:04.259169 [info ] [MainThread]: 
+Your new dbt project "fpl_pipeline" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m11:11:04.259323 [info ] [MainThread]: Setting up your profile.
+[0m11:11:04.259597 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No adapters available. Learn how to install an adapter by going to https://docs.getdbt.com/docs/connect-adapters#install-using-the-cli
+[0m11:11:04.556883 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": false, "command_wall_clock_time": 0.39922678, "process_in_blocks": "0", "process_kernel_time": 0.131805, "process_mem_max_rss": "115376128", "process_out_blocks": "0", "process_user_time": 0.630492}
+[0m11:11:04.557367 [debug] [MainThread]: Command `dbt init` failed at 11:11:04.557279 after 0.40 seconds
+[0m11:11:04.557638 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x123b74180>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x123b61fd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x123b3d370>]}
+[0m11:11:04.557904 [debug] [MainThread]: Flushing usage events
+[0m11:11:05.457529 [debug] [MainThread]: An error was encountered while trying to flush usage events
