@@ -29,10 +29,7 @@ class PlayerNames(BaseModel):
 
 client = genai.Client()
 
-prompt = f"""
-For the following PL players, please output the inputted id along with their most commonly known as full name.
-E.g. input: David Raya Martin, output: David Raya
-"""
+prompt = f"For the following PL players please output the inputted player_id along with their most commonly used full name, e.g. for input: David Raya Martin, output: David Raya"
 
 response = client.models.generate_content(
     model='gemini-3-flash-preview',
