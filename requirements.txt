@@ -5,4 +5,4 @@ google-cloud
 google-api-core
 google-oauth
 pandas
-pands-gbq
+pandas-gbq
