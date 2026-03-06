@@ -9,12 +9,14 @@ def fetch_fpl_data():
     static_url = "https://fantasy.premierleague.com/api/bootstrap-static/"
     fixture_url = "https://fantasy.premierleague.com/api/fixtures/"
 
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"}
+
     try:
-        response = requests.get(static_url)
+        response = requests.get(static_url, headers=headers)
         response.raise_for_status()
         static_data = response.json() 
 
-        response = requests.get(fixture_url)
+        response = requests.get(fixture_url, headers=headers)
         response.raise_for_status()
         fixture_data = response.json() 
 
