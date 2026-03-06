@@ -1,19 +1,19 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
     entrypoint: 'bash'
-    args: ['-c', 'docker pull europe-west2-docker.pkg.dev/fpl-analytics-488811/fpl-analytics-artifacts/fpl-base-image:latest || exit 0']
+    args: ['-c', 'docker pull europe-west2-docker.pkg.dev/fpl-analytics-488811/fpl-analytics-artifacts/fpl-data-loader:latest || exit 0']
 
   - name: 'gcr.io/cloud-builders/docker'
     args: 
       - 'build'
       - '-t'
-      - 'europe-west2-docker.pkg.dev/fpl-analytics-488811/fpl-analytics-artifacts/fpl-base-image:latest'
+      - 'europe-west2-docker.pkg.dev/fpl-analytics-488811/fpl-analytics-artifacts/fpl-data-loader:latest'
       - '--cache-from'
-      - 'europe-west2-docker.pkg.dev/fpl-analytics-488811/fpl-analytics-artifacts/fpl-base-image:latest'
+      - 'europe-west2-docker.pkg.dev/fpl-analytics-488811/fpl-analytics-artifacts/fpl-data-loader:latest'
       - '.'
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'europe-west2-docker.pkg.dev/fpl-analytics-488811/fpl-analytics-artifacts/fpl-base-image:latest']
-    
+    args: ['push', 'europe-west2-docker.pkg.dev/fpl-analytics-488811/fpl-analytics-artifacts/fpl-data-loader:latest']
+
 options:
   logging: CLOUD_LOGGING_ONLY
