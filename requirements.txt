@@ -6,3 +6,4 @@ google-api-core
 google-oauth
 pandas
 pandas-gbq
+openpyxl
