@@ -19,10 +19,11 @@ gcs_paths = [(f"raw-fpl-player/raw-players-{current_date}.json", [0, "elements"]
              (f"raw-fpl-fixture/raw-fixtures-{current_date}.json", [1]),
              (f"raw-fpl-json/raw-fpl-{current_date}.json", [0])]
 
-bq_tables = ["fpl-analytics-488811.raw_team_data.full_team_data",
-             "fpl-analytics-488811.raw_player_data.full_player_data"]
+bq_tables = ["fpl-analytics-488811.raw_player_data.full_player_data",
+             "fpl-analytics-488811.raw_team_data.full_team_data"] 
 
-raw_data = [fetch_fpl_data(url) for url in api_urls if fetch_fpl_data(url)]
+raw_responses = [fetch_fpl_data(url) for url in api_urls]
+raw_data = [data for data in raw_responses if data]
 
 if raw_data:
     client = storage.Client()
@@ -32,4 +33,4 @@ if raw_data:
         load_to_storage(bucket, path[0], dig(raw_data, path[1]))
 
     for path, table in zip(gcs_paths[:2], bq_tables):
-        gcs_to_bq(path, bucket, table)
+        gcs_to_bq(path[0], bucket, table)
