@@ -1,8 +1,10 @@
 import requests
+import aiohttp
+import asyncio  
+import pandas as pd
+from google.cloud import bigquery
 from google.cloud import storage
 from google.api_core import exceptions
-
-from src.load.gcs_functions import get_fpl_bucket, get_fpl_paths, dig, load_to_storage
 
 def fetch_fpl_data(url):
     print(f"Fetching data from {url}...")
@@ -18,13 +20,32 @@ def fetch_fpl_data(url):
         print(f"Unexpected error occured: {e}")
         return False
 
-def run_fpl_pipeline():
-    urls = ["https://fantasy.premierleague.com/api/bootstrap-static/",
-            "https://fantasy.premierleague.com/api/fixtures/"]
-    raw_data = [fetch_fpl_data(url) for url in urls if fetch_fpl_data(url)]
+def get_player_urls():
+    bq_client = bigquery.Client()
+    query = 'SELECT player_id FROM `fpl-analytics-488811.curated_player_data.player_taxonomies`'
+    query_job = bq_client.query(query)
 
-    if raw_data:
-        bucket = get_fpl_bucket()
-        for path in get_fpl_paths(["all"]):
-            load_to_storage(bucket, path[0], dig(raw_data, path[1]))
+    return [f"https://fantasy.premierleague.com/api/element-summary/{row['player_id']}/" for row in query_job]
+
+async def fetch_player_data(session, url):
+    print(f"Fetching: {url}")
+    headers = {'User-Agent': 'Mozilla/5.0'}
+
+    async with session.get(url, headers=headers) as response:
+        await asyncio.sleep(1)
+        data = await response.json()
+        print(f"Completed task: {url}")
+        return data
+
+async def fetch_player_histories():
+    urls = get_player_urls()
+    
+    async with aiohttp.ClientSession() as session:
+        tasks = [fetch_player_data(session, url) for url in urls]
+        results = await asyncio.gather(*tasks)
+
+        flat_history = [item for sublist in results if sublist for item in sublist]
+        return flat_history
+
+
 

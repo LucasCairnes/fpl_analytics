@@ -1,23 +1,35 @@
-from src.extract.fpl_api import run_fpl_pipeline
-from src.load.bq_functions import gcs_to_bq
+import os
+from datetime import date
+from google.cloud import storage
 from dotenv import load_dotenv
+load_dotenv()
 
-try:
-    load_dotenv()
+from src.extract.fpl_api import fetch_fpl_data
+from src.transform.utils import dig
+from src.load.gcs_functions import load_to_storage
+from src.load.bq_functions import gcs_to_bq
 
-    run_fpl_pipeline()
+api_urls = ["https://fantasy.premierleague.com/api/bootstrap-static/",
+            "https://fantasy.premierleague.com/api/fixtures/"]
 
-    gcs_path = f"raw-fpl-team/raw-teams-2026-02-28.json"
-    table_id = "fpl-analytics-488811.raw_team_data.full_team_data"
-    gcs_to_bq(gcs_path, table_id)
+current_date = date.today().isoformat()
 
-    gcs_path = f"raw-fpl-player/raw-players-2026-02-28.json"
-    table_id = "fpl-analytics-488811.raw_player_data.full_player_data"
-    gcs_to_bq(gcs_path, table_id)
-    
-    print("Pipeline executed successfully!")
+gcs_paths = [(f"raw-fpl-player/raw-players-{current_date}.json", [0, "elements"]),
+             (f"raw-fpl-team/raw-teams-{current_date}.json", [0, "teams"]),
+             (f"raw-fpl-fixture/raw-fixtures-{current_date}.json", [1]),
+             (f"raw-fpl-json/raw-fpl-{current_date}.json", [0])]
 
-except Exception as e:
-    print(f"Load FPL data API encountered unexpected error: {e}")
+bq_tables = ["fpl-analytics-488811.raw_team_data.full_team_data",
+             "fpl-analytics-488811.raw_player_data.full_player_data"]
 
-print("testing autobuild11")
+raw_data = [fetch_fpl_data(url) for url in api_urls if fetch_fpl_data(url)]
+
+if raw_data:
+    client = storage.Client()
+    bucket = client.bucket(os.getenv("GCS_BUCKET_NAME"))
+
+    for path in gcs_paths:
+        load_to_storage(bucket, path[0], dig(raw_data, path[1]))
+
+    for path, table in zip(gcs_paths[:2], bq_tables):
+        gcs_to_bq(path, bucket, table)
