@@ -35,7 +35,7 @@ async def fetch_player_data(session, url, semaphore):
         headers = {'User-Agent': 'Mozilla/5.0'}
 
         async with session.get(url, headers=headers) as response:
-            await asyncio.sleep(1)
+            await asyncio.sleep(5)
             data = await response.json()
             print(f"Completed task: {url}")
             return data["history"]
