@@ -7,3 +7,4 @@ google-oauth
 pandas
 pandas-gbq
 openpyxl
+dbt-bigquery

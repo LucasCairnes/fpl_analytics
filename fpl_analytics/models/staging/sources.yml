@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: raw_player_data
+    database: fpl-analytics-488811
+    schema: raw_player_data
+    tables:
+      - name: full_player_data
+      - name: full_player_stats
+
+  - name: raw_team_data
+    database: fpl-analytics-488811
+    schema: raw_team_data
+    tables:
+      - name: full_team_data
+
