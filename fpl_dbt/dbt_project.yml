@@ -31,6 +31,14 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   fpl_analytics:
-    # Config indicated by + and applies to all files under models/example/
-    example:
+    staging_player:
+      +schema: stg_player_data
+      +materialized: view
+
+    curated_player:
+      +schema: curated_player_data
+      +materialized: view
+
+    curated_team:
+      +schema: curated_team_data
       +materialized: view
