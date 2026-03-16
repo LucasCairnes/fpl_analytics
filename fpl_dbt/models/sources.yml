@@ -14,11 +14,24 @@ sources:
     tables:
       - name: full_team_data
 
+  - name: raw_fixture_data
+    database: fpl-analytics-488811
+    schema: raw_fixture_data
+    tables:
+      - name: full_fixture_data
+
   - name: stg_player_data
     database: fpl-analytics-488811
     schema: stg_player_data
     tables:
-      - name: stg_player_stats    
+      - name: stg_player_stats
+    
+  - name: stg_fixture_data
+    database: fpl-analytics-488811
+    schema: stg_fixture_data
+    tables:
+      - name: stg_fixtures
+      - name: fixtures_by_team 
 
   - name: curated_team_data
     database: fpl-analytics-488811
@@ -31,5 +44,3 @@ sources:
     schema: curated_team_data
     tables:
       - name: team_taxonomies
-
-

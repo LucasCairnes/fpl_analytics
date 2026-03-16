@@ -35,8 +35,16 @@ models:
       +schema: stg_player_data
       +materialized: view
 
+    staging_fixture:
+      +schema: stg_fixture_data
+      +materialized: view
+
     curated_player:
       +schema: curated_player_data
+      +materialized: view
+
+    curated_fixture:
+      +schema: curated_fixture_data
       +materialized: view
 
     curated_team:

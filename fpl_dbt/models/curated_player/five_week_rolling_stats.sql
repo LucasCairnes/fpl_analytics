@@ -11,10 +11,12 @@ five_gw_rolling_stats AS (
     {{ rolling_value('goals_scored', 'SUM', 5) }} AS five_gw_goals,
     {{ rolling_value('assists', 'SUM', 5) }} AS five_gw_assists,
     {{ rolling_value('expected_goals', 'AVG', 5) }} AS five_gw_xg_avg,
-    {{ rolling_value('expected_assists', 'AVG', 5) }} AS five_gw_xa_avg
+    {{ rolling_value('expected_assists', 'AVG', 5) }} AS five_gw_xa_avg,
+    {{ rolling_value('minutes', 'SUM', 5) }} AS five_gw_minutes
+
   FROM player_data
   WHERE
     minutes > 0
 )
 
-SELECT * FROM five_gw_rolling_stats
+SELECT * FROM five_gw_rolling_stats 
