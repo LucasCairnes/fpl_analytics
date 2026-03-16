@@ -20,7 +20,7 @@ gcs_paths = [(f"raw-fpl-player/raw-players-{current_date}.json", [0, "elements"]
              (f"raw-fpl-json/raw-fpl-{current_date}.json", [0])]
 
 bq_tables = ["fpl-analytics-488811.raw_player_data.full_player_data",
-             "fpl-analytics-488811.raw_team_data.full_team_data"
+             "fpl-analytics-488811.raw_team_data.full_team_data",
              "fpl-analytics-488811.raw_fixture_data.full_fixture_data"] 
 
 raw_responses = [fetch_fpl_data(url) for url in api_urls]
