@@ -1,6 +1,6 @@
 {{ config(materialized='table') }}
 
-WITH team_data AS(
+WITH team_data AS (
   SELECT * FROM {{ source('raw_team_data', 'full_team_data')}}
 ),
 
