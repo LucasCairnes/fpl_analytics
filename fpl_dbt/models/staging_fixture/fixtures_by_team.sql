@@ -4,13 +4,6 @@ WITH fixture_data AS (
     SELECT * FROM {{ source('stg_fixture_data', 'stg_fixtures') }}
 ),
 
-fixtures_w_max_gameweek AS (
-    SELECT
-    f.*
-    FROM fixture_data f
-    CROSS JOIN
-)
-
 fixtures_by_team AS (
   SELECT 
     team_h AS team_id, 
