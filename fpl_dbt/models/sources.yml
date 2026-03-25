@@ -25,6 +25,7 @@ sources:
     schema: stg_player_data
     tables:
       - name: stg_player_stats
+      - name: stg_player_data
     
   - name: stg_fixture_data
     database: fpl-analytics-488811
@@ -44,3 +45,9 @@ sources:
     schema: curated_team_data
     tables:
       - name: team_taxonomies
+
+  - name: curated_fixture_data
+    database: fpl-analytics-488811
+    schema: curated_fixture_data
+    tables:
+      - name: upcoming_fixtures
