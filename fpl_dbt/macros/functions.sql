@@ -3,19 +3,15 @@
     {% if func | upper == 'AVG' %}
         ROUND(AVG({{ column }}) OVER(
             PARTITION BY player_id
-            ORDER BY gameweek DESC
-            ROWS BETWEEN CURRENT ROW AND {{ weeks - 1 }} FOLLOWING
+            ORDER BY gameweek 
+            RANGE BETWEEN {{ weeks - 1 }} PRECEDING AND CURRENT ROW
         ), 3)
     {% else %}
         SUM({{ column }}) OVER(
             PARTITION BY player_id
-            ORDER BY gameweek DESC
-            ROWS BETWEEN CURRENT ROW AND {{ weeks }} FOLLOWING
+            ORDER BY gameweek 
+            RANGE BETWEEN {{ weeks - 1 }} PRECEDING AND CURRENT ROW
         )
     {% endif %}
 
 {% endmacro %}
-
-
-
-

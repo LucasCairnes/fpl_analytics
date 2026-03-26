@@ -7,32 +7,35 @@ WITH player_stats AS (
 stg_player_stats AS (
   SELECT
     element AS player_id,
-    fixture AS fixture_id,
     round AS gameweek,
-    total_points,
-    minutes,
-    goals_scored,
-    assists,
-    clean_sheets,
-    goals_conceded,
-    own_goals,
-    penalties_missed,
-    penalties_saved,
-    yellow_cards,
-    red_cards,
-    saves,
-    bonus,
-    bps,
-    influence,
-    creativity,
-    threat,
-    ict_index,
-    expected_goals,
-    expected_assists,
-    expected_goals_conceded,
-    expected_goal_involvements,
+    COUNT(fixture) AS fixtures_played, 
+    SUM(total_points) AS total_points,
+    SUM(minutes) AS minutes,
+    SUM(goals_scored) AS goals_scored,
+    SUM(assists) AS assists,
+    SUM(clean_sheets) AS clean_sheets,
+    SUM(goals_conceded) AS goals_conceded,
+    SUM(own_goals) AS own_goals,
+    SUM(penalties_missed) AS penalties_missed,
+    SUM(penalties_saved) AS penalties_saved,
+    SUM(yellow_cards) AS yellow_cards,
+    SUM(red_cards) AS red_cards,
+    SUM(saves) AS saves,
+    SUM(bonus) AS bonus,
+    SUM(bps) AS bps,
+    SUM(influence) AS influence,
+    SUM(creativity) AS creativity,
+    SUM(threat) AS threat,
+    SUM(ict_index) AS ict_index,
+    SUM(expected_goals) AS expected_goals,
+    SUM(expected_assists) AS expected_assists,
+    SUM(expected_goals_conceded) AS expected_goals_conceded,
+    SUM(expected_goal_involvements) AS expected_goal_involvements
 
   FROM player_stats
+  GROUP BY
+    player_id,
+    gameweek
 )
 
 SELECT * FROM stg_player_stats

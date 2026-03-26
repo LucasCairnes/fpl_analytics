@@ -19,6 +19,8 @@ rolling_stats AS (
 five_gw_rolling_stats AS (
   SELECT
     r.*,
+    r.five_gw_goals - five_gw_xg AS xg_performance,
+    r.five_gw_assists - five_gw_xa AS xa_performance,
     r.five_gw_goals + r.five_gw_assists - r.five_gw_xg - r.five_gw_xa AS xga_performance
   FROM rolling_stats r
   WHERE

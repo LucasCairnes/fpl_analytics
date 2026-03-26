@@ -50,3 +50,7 @@ models:
     curated_team:
       +schema: curated_team_data
       +materialized: view
+
+    fpl_prod:
+      +schema: fpl_prod
+      +materialized: view

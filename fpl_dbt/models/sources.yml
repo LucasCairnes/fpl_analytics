@@ -42,9 +42,10 @@ sources:
 
   - name: curated_player_data
     database: fpl-analytics-488811
-    schema: curated_team_data
+    schema: curated_player_data
     tables:
-      - name: team_taxonomies
+      - name: player_taxonomies
+      - name: five_week_rolling_stats
 
   - name: curated_fixture_data
     database: fpl-analytics-488811
