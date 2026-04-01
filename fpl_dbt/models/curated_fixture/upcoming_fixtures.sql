@@ -17,7 +17,7 @@ ordered_fixtures AS (
 ),
 
 upcoming_fixtures AS (
-    SELECT 
+    SELECT
         team_id,
         MAX(CASE WHEN match_order = 1 THEN opponent_id END) AS opp_1,
         MAX(CASE WHEN match_order = 2 THEN opponent_id END) AS opp_2,
