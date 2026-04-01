@@ -8,6 +8,8 @@ stg_selection_info AS (
     SELECT
         id AS player_id,
         can_select,
+        CAST(now_cost / 10 AS FLOAT64) AS transfer_value,
+        selected_by_percent,
         cost_change_event,
         cost_change_event_fall,
         cost_change_start,
@@ -19,7 +21,7 @@ stg_selection_info AS (
         transfers_out_event,
         value_season,
         selected_rank,
-        selected_rank_type
+        selected_rank_type,
     FROM player_data
 )
 
