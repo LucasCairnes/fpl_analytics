@@ -9,7 +9,7 @@ rolling_stats AS (
 ),
 
 team_info AS (
-    SELECT * FROM {{ ref('team_taxonomies') }} 
+    SELECT * FROM {{ ref('curated_player_data', 'team_taxonomies') }} 
 ),
 
 due_a_haul AS (
