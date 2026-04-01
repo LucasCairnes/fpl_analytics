@@ -13,8 +13,8 @@ transfer_stats AS (
 ),
 
 team_info AS (
-    SELECT * FROM {{ ref('team_taxonomies') }} 
-),
+    SELECT * FROM {{ ref('curated_team_data', 'team_taxonomies') }} 
+)
 
 best_value AS (
     SELECT

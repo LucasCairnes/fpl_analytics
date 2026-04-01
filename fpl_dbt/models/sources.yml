@@ -49,6 +49,7 @@ sources:
       - name: five_week_rolling_stats
       - name: ten_week_rolling_stats
       - name: transfer_stats
+      - name: form_vs_fixtures
 
   - name: curated_fixture_data
     database: fpl-analytics-488811
