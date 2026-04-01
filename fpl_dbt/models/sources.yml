@@ -26,6 +26,7 @@ sources:
     tables:
       - name: stg_player_stats
       - name: stg_player_data
+      - name: stg_selection_info
     
   - name: stg_fixture_data
     database: fpl-analytics-488811
@@ -46,6 +47,8 @@ sources:
     tables:
       - name: player_taxonomies
       - name: five_week_rolling_stats
+      - name: ten_week_rolling_stats
+      - name: transfer_stats
 
   - name: curated_fixture_data
     database: fpl-analytics-488811

@@ -24,7 +24,7 @@ def fetch_fpl_data(url):
 
 def get_player_urls():
     bq_client = bigquery.Client()
-    query = 'SELECT player_id FROM `fpl-analytics-488811.curated_player_data.player_taxonomies` LIMIT 50'
+    query = 'SELECT player_id FROM `fpl-analytics-488811.curated_player_data.player_taxonomies`'
     query_job = bq_client.query(query)
 
     return [f"https://fantasy.premierleague.com/api/element-summary/{row['player_id']}/" for row in query_job]
