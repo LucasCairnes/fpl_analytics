@@ -8,7 +8,9 @@ team_taxonomies AS (
   SELECT 
     id AS team_id,
     name AS team_name,
-    short_name
+    short_name,
+    code AS pl_code,
+    CONCAT('https://resources.premierleague.com/premierleague/badges/t', code,'.png') AS logo
   FROM team_data
 )
 

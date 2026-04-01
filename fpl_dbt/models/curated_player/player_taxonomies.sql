@@ -24,7 +24,7 @@ player_taxonomies AS (
       ELSE 'Unknown'
     END AS position,
     p.pl_id,
-    CONCAT('https://resources.premierleague.com/premierleague/photos/players/110x140/p', p.pl_id, '.png') AS image_url
+    CONCAT('https://resources.premierleague.com/premierleague25/photos/players/110x140/', p.pl_id, '.png') AS player_image
   FROM 
     player_data p
   LEFT JOIN 
