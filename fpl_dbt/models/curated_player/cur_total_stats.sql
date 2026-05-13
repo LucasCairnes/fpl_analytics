@@ -1,8 +1,8 @@
 {{ config(materialized='table') }}
 
-player_data AS (
-    SELECT * FROM {{ source('stg_player_data', 'stg_player_data') }}
-)
+WITH player_data AS (
+    SELECT * FROM {{ source('stg_player', 'stg_player_data') }}
+),
 
 cur_total_stats AS (
     SELECT

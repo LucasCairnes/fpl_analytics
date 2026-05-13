@@ -5,7 +5,7 @@ WITH player_data AS (
 ),
 
 rolling_stats AS (
-    SELECT * FROM {{ source('curated_player', 'cur_ten_week_rolling_stats')}}
+    SELECT * FROM {{ source('curated_player', 'cur_player_ten_gw_stats')}}
 ),
 
 transfer_stats AS (
@@ -13,26 +13,26 @@ transfer_stats AS (
 ),
 
 team_info AS (
-    SELECT * FROM {{ ref('curated_team', 'cur_team_taxonomies') }} 
-)
+    SELECT * FROM {{ source('curated_team', 'cur_team_taxonomies') }} 
+),
 
 points_per_value AS (
     SELECT
         p.player_name,
         p.player_image,
         p.team_name,
-        t.team_logo,
+        ti.team_logo,
         p.position,
-        t.transfer_value,
+        ts.transfer_value,
         r.ten_gw_avg_pts,
-        ROUND(r.ten_gw_avg_pts / t.transfer_value, 3) AS points_per_value
+        ROUND(r.ten_gw_avg_pts / ts.transfer_value, 3) AS points_per_value
     FROM rolling_stats r
     LEFT JOIN player_data p
         ON r.player_id = p.player_id
-    LEFT JOIN transfer_stats t
-        ON r.player_id = t.player_id
-    LEFT JOIN team_info t
-        ON p.team_name = t.team_name 
+    LEFT JOIN transfer_stats ts
+        ON r.player_id = ts.player_id
+    LEFT JOIN team_info ti
+        ON p.team_name = ti.team_name 
     WHERE r.gameweek = (SELECT MAX(gameweek) FROM rolling_stats)
     ORDER BY ten_gw_avg_pts ASC
 )

@@ -1,22 +1,28 @@
 {{ config(materialized='table') }}
 
 WITH player_data AS (
-    SELECT * FROM {{ source('curated_player', 'cur_total_stats')}}
+    SELECT * FROM {{ ref('cur_player_taxonomies') }}
+),
+
+player_stats AS (
+    SELECT * FROM {{ ref('cur_total_stats') }}
 ),
 
 team_info AS (
-    SELECT * FROM {{ ref('curated_team', 'cur_team_taxonomies') }} 
-)
+    SELECT * FROM {{ ref('cur_team_taxonomies') }} 
+),
 
 player_form AS (
     SELECT
-        p.player_name AS player,
-        p.player_image,
-        p.form,
-        t.logo AS team_logo
-    FROM player_data p
+        pd.player_name AS player,
+        pd.player_image,
+        ps.form,
+        t.team_logo
+    FROM player_data pd
     LEFT JOIN team_info t 
-    ON p.team_name = t.team_name                   
+        ON pd.team_name = t.team_name
+    LEFT JOIN player_stats ps 
+        ON pd.player_id = ps.player_id                    
 )
 
 SELECT * FROM player_form

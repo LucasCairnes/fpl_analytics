@@ -32,12 +32,12 @@ sources:
     database: fpl-analytics-488811
     schema: stg_fixture
     tables:
-      - name: stg_fixtures
+      - name: stg_fixture_data
       - name: stg_fixtures_by_team 
 
   - name: curated_team
     database: fpl-analytics-488811
-    schema: curated_team
+    schema: curated_team 
     tables:
       - name: cur_team_taxonomies
 
@@ -56,3 +56,4 @@ sources:
     schema: curated_fixture
     tables:
       - name: cur_next_five_fixtures
+      - name: cur_fixtures_by_team

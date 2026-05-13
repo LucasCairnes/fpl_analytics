@@ -5,18 +5,18 @@ WITH fixture_data AS (
 ),
 
 team_info AS (
-    SELECT * FROM {{ ref('curated_team', 'cur_team_taxonomies') }} 
-)
+    SELECT * FROM {{ source('curated_team', 'cur_team_taxonomies') }} 
+),
 
 fixture_matrix AS (
     SELECT
         t.team_logo,
         t.team_name,
-        t1.team_logo,
-        t2.team_logo,
-        t3.team_logo,
-        t4.team_logo,
-        t5.team_logo,
+        t1.team_logo AS opp1,
+        t2.team_logo AS opp2,
+        t3.team_logo AS opp3,
+        t4.team_logo AS opp4,
+        t5.team_logo AS opp5,
         f.mean_difficulty_next_5
     FROM fixture_data f
     LEFT JOIN team_info t

@@ -14,13 +14,9 @@ stg_fixture_data AS (
         CAST(team_a_score AS int) AS team_a_score,
         team_h_difficulty,
         team_a_difficulty,
-        CASE
-            WHEN started = 1.0 THEN true
-            WHEN started = 0.0 THEN false
-            ELSE null
-        END AS started,
+        started,
         finished
     FROM fixture_data
 )
 
-SELECT * FROM stg_fixtures
+SELECT * FROM stg_fixture_data

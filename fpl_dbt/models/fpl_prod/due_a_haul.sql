@@ -1,15 +1,15 @@
 {{ config(materialized='table') }}
 
 WITH player_data AS (
-    SELECT * FROM {{ source('curated_player', 'player_taxonomies')}}
+    SELECT * FROM {{ source('curated_player', 'cur_player_taxonomies')}}
 ),
 
 rolling_stats AS (
-    SELECT * FROM {{ source('curated_player', 'five_week_rolling_stats')}}
+    SELECT * FROM {{ source('curated_player', 'cur_player_five_gw_stats')}}
 ),
 
 team_info AS (
-    SELECT * FROM {{ ref('curated_player', 'team_taxonomies') }} 
+    SELECT * FROM {{ source('curated_team', 'cur_team_taxonomies') }} 
 ),
 
 due_a_haul AS (
@@ -17,7 +17,7 @@ due_a_haul AS (
         p.player_name AS player,
         p.player_image,
         p.team_name AS team,
-        ti.logo AS team_logo,
+        ti.team_logo,
         p.position,
         r.five_gw_goals AS goals,
         r.five_gw_assists AS assists,
