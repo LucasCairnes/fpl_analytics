@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 
 WITH team_data AS (
-  SELECT * FROM {{ source('raw_team_data', 'raw_team_data')}}
+  SELECT * FROM {{ source('raw_team', 'raw_team_data')}}
 ),
 
 cur_team_taxonomies AS (

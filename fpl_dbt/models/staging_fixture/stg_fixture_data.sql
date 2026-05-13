@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 
 WITH fixture_data AS (
-    SELECT * FROM {{ source('raw_fixture_data', 'raw_fixture_data') }}
+    SELECT * FROM {{ source('raw_fixture', 'raw_fixture_data') }}
 ),
 
 stg_fixture_data AS (

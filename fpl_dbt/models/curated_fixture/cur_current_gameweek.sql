@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 
 WITH fixture_data AS (
-    SELECT * FROM {{ source('stg_fixture_data', 'stg_fixtures') }}
+    SELECT * FROM {{ source('stg_fixture', 'stg_fixtures') }}
 ),
 
 cur_current_gameweek AS (

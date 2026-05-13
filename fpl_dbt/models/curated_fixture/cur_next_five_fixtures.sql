@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 
 WITH fixture_data AS (
-    SELECT * FROM {{ source('stg_fixture_data', 'cur_fixtures_by_team') }}
+    SELECT * FROM {{ source('stg_fixture', 'cur_fixtures_by_team') }}
 ),
 
 ordered_fixtures AS (

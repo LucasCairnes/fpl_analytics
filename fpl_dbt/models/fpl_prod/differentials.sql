@@ -1,11 +1,11 @@
 {{ config(materialized='table') }}
 
 WITH ownership_data AS (
-    SELECT * FROM {{ source('curated_player_data','current_stats') }}
+    SELECT * FROM {{ source('curated_player','current_stats') }}
 ),
 
 player_data AS (
-    SELECT * FROM {{ source('stg_player_data', 'stg_player_data')}}
+    SELECT * FROM {{ source('stg_player', 'stg_player_data')}}
 )
 
 differentials AS (
