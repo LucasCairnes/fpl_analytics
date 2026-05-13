@@ -1,59 +1,58 @@
 version: 2
 
 sources:
-  - name: raw_player_data
+  - name: raw_player
     database: fpl-analytics-488811
-    schema: raw_player_data
+    schema: raw_player
     tables:
-      - name: full_player_data
-      - name: full_player_stats
+      - name: raw_player_data
+      - name: raw_player_stats
 
-  - name: raw_team_data
+  - name: raw_team
     database: fpl-analytics-488811
-    schema: raw_team_data
+    schema: raw_team
     tables:
-      - name: full_team_data
+      - name: raw_team_data
 
-  - name: raw_fixture_data
+  - name: raw_fixture
     database: fpl-analytics-488811
-    schema: raw_fixture_data
+    schema: raw_fixture
     tables:
-      - name: full_fixture_data
+      - name: raw_fixture_data
 
-  - name: stg_player_data
+  - name: stg_player
     database: fpl-analytics-488811
-    schema: stg_player_data
+    schema: stg_player
     tables:
       - name: stg_player_stats
       - name: stg_player_data
       - name: stg_selection_info
     
-  - name: stg_fixture_data
+  - name: stg_fixture
     database: fpl-analytics-488811
-    schema: stg_fixture_data
+    schema: stg_fixture
     tables:
       - name: stg_fixtures
-      - name: fixtures_by_team 
+      - name: stg_fixtures_by_team 
 
-  - name: curated_team_data
+  - name: curated_team
     database: fpl-analytics-488811
-    schema: curated_team_data
+    schema: curated_team
     tables:
-      - name: team_taxonomies
+      - name: cur_team_taxonomies
 
-  - name: curated_player_data
+  - name: curated_player
     database: fpl-analytics-488811
-    schema: curated_player_data
+    schema: curated_player
     tables:
-      - name: player_taxonomies
-      - name: five_week_rolling_stats
-      - name: ten_week_rolling_stats
-      - name: transfer_stats
-      - name: form_vs_fixtures
-      - name: current_stats
+      - name: cur_player_taxonomies
+      - name: cur_player_five_gw_stats
+      - name: cur_player_ten_gw_stats
+      - name: cur_selection_info
+      - name: cur_total_stats
 
-  - name: curated_fixture_data
+  - name: curated_fixture
     database: fpl-analytics-488811
-    schema: curated_fixture_data
+    schema: curated_fixture
     tables:
-      - name: upcoming_fixtures
+      - name: cur_next_five_fixtures

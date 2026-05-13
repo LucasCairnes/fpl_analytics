@@ -32,23 +32,23 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   fpl_analytics:
     staging_player:
-      +schema: stg_player_data
+      +schema: stg_player
       +materialized: view
 
     staging_fixture:
-      +schema: stg_fixture_data
+      +schema: stg_fixture
       +materialized: view
 
     curated_player:
-      +schema: curated_player_data
+      +schema: curated_player
       +materialized: view
 
     curated_fixture:
-      +schema: curated_fixture_data
+      +schema: curated_fixture
       +materialized: view
 
     curated_team:
-      +schema: curated_team_data
+      +schema: curated_team
       +materialized: view
 
     fpl_prod:

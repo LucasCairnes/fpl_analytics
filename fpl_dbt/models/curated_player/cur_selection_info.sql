@@ -4,7 +4,7 @@ WITH player_data AS (
     SELECT * FROM {{ source('stg_player_data','stg_selection_info') }}
 )
 
-transfer_stats AS (
+cur_selection_info AS (
     SELECT
         player_id,
         transfer_value,

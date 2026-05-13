@@ -1,10 +1,10 @@
 {{ config(materialized='table') }}
 
 WITH fixture_data AS (
-    SELECT * FROM {{ source('stg_fixture_data', 'stg_fixtures') }}
+    SELECT * FROM {{ source('stg_fixture_data', 'stg_fixture_data') }}
 ),
 
-fixtures_by_team AS (
+stg_fixtures_by_team AS (
   SELECT 
     team_h AS team_id, 
     team_a AS opponent_id,

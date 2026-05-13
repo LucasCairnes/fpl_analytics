@@ -4,7 +4,7 @@ player_data AS (
     SELECT * FROM {{ source('stg_player_data', 'stg_player_data') }}
 )
 
-current_stats AS (
+cur_total_stats AS (
     SELECT
         player_id,
         total_points,
@@ -20,5 +20,5 @@ current_stats AS (
     FROM player_data
 )
 
-SELECT * FROM current_stats
+SELECT * FROM cur_total_stats
 

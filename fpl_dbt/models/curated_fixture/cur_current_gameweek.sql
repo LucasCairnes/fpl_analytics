@@ -4,7 +4,7 @@ WITH fixture_data AS (
     SELECT * FROM {{ source('stg_fixture_data', 'stg_fixtures') }}
 ),
 
-current_gameweek AS (
+cur_current_gameweek AS (
     SELECT
         gameweek
     FROM fixture_data

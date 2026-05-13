@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 
 WITH player_data AS(
-  SELECT * FROM {{ source('curated_player_data', 'current_stats')}}
+  SELECT * FROM {{ source('curated_player_data', 'cur_total_stats')}}
 ),
 
 rolling_stats AS (
@@ -16,7 +16,7 @@ rolling_stats AS (
   FROM player_data
 ),
 
-five_gw_rolling_stats AS (
+cur_player_five_gw_stats AS (
   SELECT
     r.*,
     r.five_gw_goals - five_gw_xg AS xg_performance,
@@ -27,4 +27,4 @@ five_gw_rolling_stats AS (
     five_gw_minutes > 270
 )
 
-SELECT * FROM five_gw_rolling_stats 
+SELECT * FROM cur_player_five_gw_stats 

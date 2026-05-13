@@ -17,7 +17,7 @@ gcs_path = f"raw-fpl-player-stats/raw-stats-{current_date}.json"
 client = storage.Client()
 bucket = client.bucket(os.getenv("GCS_BUCKET_NAME"))
 
-table_id = "fpl-analytics-488811.raw_player_data.full_player_stats"
+table_id = "fpl-analytics-488811.raw_player.raw_player_stats"
 
 load_to_storage(bucket, gcs_path, player_histories)
 gcs_to_bq(gcs_path, bucket, table_id)

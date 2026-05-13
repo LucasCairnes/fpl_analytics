@@ -1,22 +1,22 @@
 {{ config(materialized='table') }}
 
 WITH fixture_data AS (
-    SELECT * FROM {{ source('curated_fixture_data', 'upcoming_fixtures')}}
+    SELECT * FROM {{ source('curated_fixture_data', 'cur_next_five_fixtures')}}
 ),
 
 team_info AS (
-    SELECT * FROM {{ ref('curated_team_data', 'team_taxonomies') }} 
+    SELECT * FROM {{ ref('curated_team_data', 'cur_team_taxonomies') }} 
 )
 
 fixture_matrix AS (
     SELECT
-        t.logo,
+        t.team_logo,
         t.team_name,
-        t1.logo,
-        t2.logo,
-        t3.logo,
-        t4.logo,
-        t5.logo,
+        t1.team_logo,
+        t2.team_logo,
+        t3.team_logo,
+        t4.team_logo,
+        t5.team_logo,
         f.mean_difficulty_next_5
     FROM fixture_data f
     LEFT JOIN team_info t

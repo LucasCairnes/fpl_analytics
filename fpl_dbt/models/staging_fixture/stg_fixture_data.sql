@@ -1,10 +1,10 @@
 {{ config(materialized='table') }}
 
 WITH fixture_data AS (
-    SELECT * FROM {{ source('raw_fixture_data', 'full_fixture_data') }}
+    SELECT * FROM {{ source('raw_fixture_data', 'raw_fixture_data') }}
 ),
 
-stg_fixtures AS (
+stg_fixture_data AS (
     SELECT
         id AS fixture_id,
         CAST(event AS int) AS gameweek,

@@ -5,10 +5,10 @@ WITH player_data AS (
 ),
 
 team_data AS (
-    SELECT * FROM {{ source('curated_team_data','team_taxonomies') }}
+    SELECT * FROM {{ source('curated_team_data','cur_team_taxonomies') }}
 ),
 
-player_taxonomies AS (
+cur_player_taxonomies AS (
   SELECT
     p.player_id,
     CASE
@@ -32,4 +32,4 @@ player_taxonomies AS (
     ON p.team_id = t.team_id
 )
 
-SELECT * FROM player_taxonomies
+SELECT * FROM cur_player_taxonomies

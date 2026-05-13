@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 
 WITH fixture_data AS (
-    SELECT * FROM {{ source('stg_fixture_data', 'fixtures_by_team') }}
+    SELECT * FROM {{ source('stg_fixture_data', 'cur_fixtures_by_team') }}
 ),
 
 ordered_fixtures AS (
@@ -16,7 +16,7 @@ ordered_fixtures AS (
     FROM fixture_data
 ),
 
-upcoming_fixtures AS (
+cur_next_five_fixtures AS (
     SELECT
         team_id,
         MAX(CASE WHEN match_order = 1 THEN opponent_id END) AS opp_1,
@@ -30,4 +30,4 @@ upcoming_fixtures AS (
     GROUP BY team_id
 )
 
-SELECT * FROM upcoming_fixtures
+SELECT * FROM cur_next_five_fixtures

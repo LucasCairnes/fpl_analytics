@@ -1,11 +1,11 @@
 {{ config(materialized='table') }}
 
 WITH player_data AS (
-    SELECT * FROM {{ source('curated_player_data', 'current_stats')}}
+    SELECT * FROM {{ source('curated_player_data', 'cur_total_stats')}}
 ),
 
 team_info AS (
-    SELECT * FROM {{ ref('curated_team_data', 'team_taxonomies') }} 
+    SELECT * FROM {{ ref('curated_team_data', 'cur_team_taxonomies') }} 
 )
 
 player_form AS (

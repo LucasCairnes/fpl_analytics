@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 
 WITH player_stats AS (
-    SELECT * FROM {{ source('raw_player_data', 'full_player_stats') }}
+    SELECT * FROM {{ source('raw_player_data', 'raw_player_stats') }}
 ),
 
 stg_player_stats AS (
