@@ -2,6 +2,7 @@ import requests
 import aiohttp
 import asyncio  
 import pandas as pd
+import os
 from google.cloud import bigquery
 from google.cloud import storage
 from google.api_core import exceptions
@@ -11,6 +12,8 @@ load_dotenv()
 def fetch_fpl_data(url):
     print(f"Fetching data from {url}...")
     try:
+        OXY_USER = os.environ.get('OXYLABS_USERNAME')
+        OXY_PASS = os.environ.get('OXYLABS_PASSWORD')
         response = requests.get(url)
         response.raise_for_status()
         static_data = response.json() 
