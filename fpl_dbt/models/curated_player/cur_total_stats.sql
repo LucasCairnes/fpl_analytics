@@ -11,6 +11,7 @@ cur_total_stats AS (
         minutes,
         goals_scored,
         assists,
+        clean_sheets,
         influence,
         creativity,
         threat,
