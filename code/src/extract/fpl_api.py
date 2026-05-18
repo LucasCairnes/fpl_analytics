@@ -10,11 +10,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def fetch_fpl_data(url):
-    print(f"Fetching data from {url}...")
     try:
-        OXY_USER = os.environ.get('OXYLABS_USERNAME')
-        OXY_PASS = os.environ.get('OXYLABS_PASSWORD')
-        response = requests.get(url)
+        print(f"Fetching: {url}...")
+        API_KEY = os.getenv("SCRAPER_API_KEY")
+        scraperapi_url = f"http://api.scraperapi.com?api_key={API_KEY}&url={url}"
+        response = requests.get(scraperapi_url)
         response.raise_for_status()
         static_data = response.json() 
 
@@ -35,9 +35,13 @@ def get_player_urls():
 async def fetch_player_data(session, url, semaphore):
     async with semaphore: 
         print(f"Fetching: {url}")
+
+        API_KEY = os.getenv("SCRAPER_API_KEY")
+        scraperapi_url = f"http://api.scraperapi.com?api_key={API_KEY}&url={url}"
+
         headers = {'User-Agent': 'Mozilla/5.0'}
 
-        async with session.get(url, headers=headers) as response:
+        async with session.get(scraperapi_url, headers=headers) as response:
             await asyncio.sleep(5)
             data = await response.json()
             print(f"Completed task: {url}")
