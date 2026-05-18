@@ -19,6 +19,7 @@ stg_selection_info AS (
         transfers_in_event,
         transfers_out,
         transfers_out_event,
+        status,
         value_season,
         selected_rank,
         selected_rank_type,

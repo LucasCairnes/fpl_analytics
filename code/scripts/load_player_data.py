@@ -36,16 +36,14 @@ query_job = client.query(query)
 player_urls = [f"https://fantasy.premierleague.com/api/element-summary/{row['player_id']}/" for row in query_job]
 
 if player_urls:
-    # player_histories = asyncio.run(fetch_player_histories(player_urls))
+    player_histories = asyncio.run(fetch_player_histories(player_urls))
 
     current_date = date.today().isoformat()
-    gcs_path = f"raw-fpl-player-stats/raw-stats-{current_date}.json"
 
+    gcs_path = f"raw-fpl-player-stats/raw-stats-{current_date}.json"
     client = storage.Client()
     bucket = client.bucket(os.getenv("GCS_BUCKET_NAME"))
-
-    # load_to_storage(bucket, gcs_path, player_histories)
+    load_to_storage(bucket, gcs_path, player_histories)
 
     table_id = "fpl-analytics-488811.raw_player.raw_player_stats"
-
     gcs_to_bq(gcs_path, bucket, table_id, method="merge")

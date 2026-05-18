@@ -23,7 +23,6 @@ def gcs_to_bq(gcs_path, bucket, table_id, method="replace"):
         temp_table = f"fpl-analytics-488811.temporary.temp_{table_name}"
         pandas_gbq.to_gbq(df, temp_table, project_id=os.getenv("PROJECT_ID"), if_exists="replace", location='europe-west2')
         
-        os.chdir("..")
         os.chdir("fpl_dbt")
 
         dbt_vars = {

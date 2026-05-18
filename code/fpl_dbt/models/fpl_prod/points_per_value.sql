@@ -25,6 +25,7 @@ points_per_value AS (
         p.position,
         ts.transfer_value,
         r.ten_gw_avg_pts,
+        ts.selected_by_percent,
         ROUND(r.ten_gw_avg_pts / ts.transfer_value, 3) AS points_per_value
     FROM rolling_stats r
     LEFT JOIN player_data p
