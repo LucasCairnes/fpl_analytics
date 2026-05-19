@@ -38,7 +38,7 @@ steps:
       - '--region'
       - 'europe-west2'
       - '--project'
-      - '$fpl-analytics-488811'
+      - 'fpl-analytics-488811'
 
 options:
   logging: CLOUD_LOGGING_ONLY
