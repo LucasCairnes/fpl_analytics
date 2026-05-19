@@ -26,6 +26,19 @@ steps:
       - 'europe-west2-docker.pkg.dev/fpl-analytics-488811/fpl-analytics-artifacts/fpl-data-loader:latest'
       - '--region'
       - 'europe-west2'
+      - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'jobs'
+      - 'update'
+      - 'fpl-data-loader'
+      - '--image'
+      - 'europe-west2-docker.pkg.dev/fpl-analytics-488811/fpl-analytics-artifacts/fpl-data-loader:latest'
+      - '--region'
+      - 'europe-west2'
+      - '--project'
+      - '$fpl-analytics-488811'
 
 options:
   logging: CLOUD_LOGGING_ONLY
