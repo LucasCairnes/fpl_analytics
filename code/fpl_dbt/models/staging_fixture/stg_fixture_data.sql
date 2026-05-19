@@ -8,6 +8,7 @@ stg_fixture_data AS (
     SELECT
         id AS fixture_id,
         CAST(event AS int) AS gameweek,
+        CAST(kickoff_time AS date) AS date,
         team_h,
         team_a,
         CAST(team_h_score AS int) AS team_h_score,

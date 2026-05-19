@@ -31,6 +31,10 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   fpl_analytics:
+    raw_player:
+      +schema: raw_player
+      +materialized: view
+
     staging_player:
       +schema: stg_player
       +materialized: view

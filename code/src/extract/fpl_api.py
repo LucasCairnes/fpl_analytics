@@ -20,7 +20,7 @@ def fetch_fpl_data(url):
 
         print(f"Fetched succesfully.")
         return static_data
-
+    
     except requests.exceptions.RequestException as e:
         print(f"Unexpected error occured: {e}")
         return False
@@ -47,9 +47,7 @@ async def fetch_player_data(session, url, semaphore):
             print(f"Completed task: {url}")
             return data["history"]
 
-async def fetch_player_histories():
-    urls = get_player_urls()
-
+async def fetch_player_histories(urls):
     semaphore = asyncio.Semaphore(10)
     connector = aiohttp.TCPConnector(limit=10)
     
@@ -59,6 +57,5 @@ async def fetch_player_histories():
 
         flat_history = [item for sublist in results if sublist for item in sublist]
         return flat_history
-
 
 

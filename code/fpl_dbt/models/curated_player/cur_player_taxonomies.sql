@@ -16,6 +16,7 @@ cur_player_taxonomies AS (
       ELSE CONCAT(p.first_name, ' ', p.second_name)
       END AS player_name,
     t.team_name,
+    t.team_id,
     CASE
       WHEN p.element_type = 1 THEN 'GK'
       WHEN p.element_type = 2 THEN 'DEF'

@@ -17,7 +17,10 @@ cur_total_stats AS (
         threat,
         expected_goals,
         expected_assists,
-        form
+        form,
+        yellow_cards,
+        red_cards,
+        bps
     FROM player_data
 )
 
