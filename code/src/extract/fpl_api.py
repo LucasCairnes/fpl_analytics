@@ -49,7 +49,7 @@ async def fetch_player_data(session, url, semaphore):
 
 async def fetch_player_histories(urls):
     semaphore = asyncio.Semaphore(10)
-    connector = aiohttp.TCPConnector(limit=10)
+    connector = aiohttp.TCPConnector(limit=5)
     
     async with aiohttp.ClientSession(connector=connector) as session:
         tasks = [fetch_player_data(session, url, semaphore) for url in urls]
