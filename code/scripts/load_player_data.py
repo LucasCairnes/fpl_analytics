@@ -27,7 +27,9 @@ def fetch_data():
 
     try:
         bq_client = bigquery.Client()
-        sql_file = "src/queries/player_ids.sql"
+
+        base_path = os.path.dirname(os.path.dirname(__file__))
+        sql_file = os.path.join(base_path, 'src', 'queries', 'player_ids.sql')
 
         with open(sql_file, 'r') as file:
             query = file.read()
