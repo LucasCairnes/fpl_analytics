@@ -12,6 +12,10 @@ from src.load.bq_functions import gcs_to_bq
 from src.transform.bq_functions import merge
 
 def initialise_logging():
+    root_logger = logging.getLogger()
+    if root_logger.hasHandlers():
+        root_logger.handlers.clear()
+
     logging_client = google.cloud.logging.Client()
     logging_client.setup_logging()
 
@@ -22,8 +26,6 @@ def fetch_data():
         "run_id" : RUN_ID,
         "pipeline_phase" : "bigquery_extraction"
     }
-
-    logging.info("Starting player data pipeline.", extra={"json_fields":logging_context})
 
     try:
         bq_client = bigquery.Client()
@@ -51,7 +53,7 @@ def fetch_data():
         logging.info("No player data to fetch today. Pipeline complete.", extra={"json_fields":logging_context})
         return
     
-    logging.info(f"Successfully fetched {url_count} player urls. Fetching data...", extra={"json_fields":logging_context})
+    logging.info(f"Successfully fetched {url_count} player urls.", extra={"json_fields":logging_context})
 
     logging_context["pipeline_phase"] = "data_extraction"
     logging_context["player_count"] = url_count
@@ -90,7 +92,6 @@ def fetch_data():
 
     current_date = date.today().isoformat()
     gcs_path = f"raw-fpl-player-stats/raw-stats-{current_date}.json"
-    logging.info(f"Uploading player data to {gcs_path}.", extra={"json_fields":logging_context})
     logging_context["pipeline_phase"] = "uploading_data"
     
     try:
@@ -111,8 +112,6 @@ def fetch_data():
     target_table = "raw_player_stats"
     temp_id = "fpl-analytics-488811.temporary.temp_raw_player_stats"
     model_name = "raw_player_merge"
-
-    logging.info(f"Uploading player data to {temp_id}...", extra={"json_fields":logging_context})
     
     try:
         gcs_to_bq(gcs_path, bucket, temp_id)
@@ -128,7 +127,6 @@ def fetch_data():
     logging.info(f"Successfully uploaded player data to {temp_id}.", extra={"json_fields":logging_context})
 
     try:
-        logging.info(f"Merging player data into {target_table}...", extra={"json_fields":logging_context})
         merge(temp_id, target_table, model_name)
     
     except Exception:
@@ -139,7 +137,7 @@ def fetch_data():
         )
         return
     
-    logging.info(f"Data successfully merged.", extra={"json_fields":logging_context})
+    logging.info(f"Successfully merged player data into {target_table}.", extra={"json_fields":logging_context})
     logging_context["pipeline_phase"] = "complete"
     logging.info(f"Pipeline execution complete.", extra={"json_fields":logging_context})
 
