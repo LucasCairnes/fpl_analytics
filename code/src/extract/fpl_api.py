@@ -49,6 +49,8 @@ async def fetch_player_histories(urls, logging_context):
     semaphore = asyncio.Semaphore(5)
     connector = aiohttp.TCPConnector(limit=5)
     
+    urls.append("https://fantasy.premierleague.com/api/element-summary/test/")
+
     async with aiohttp.ClientSession(connector=connector) as session:
         tasks = [safe_fetch(session, url, semaphore, logging_context) for url in urls]
         results = await asyncio.gather(*tasks)

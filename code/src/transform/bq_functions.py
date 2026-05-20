@@ -14,3 +14,6 @@ def merge(temp_table, target_table, model_name):
     dbt_args = ["run", "--project-dir", "fpl_dbt", "--select", model_name, "--vars", json.dumps(dbt_vars)]
 
     res: dbtRunnerResult = dbt.invoke(dbt_args)
+
+    if not res.success:
+        raise res.exception
