@@ -1,11 +1,7 @@
-import requests
-import aiohttp
-import asyncio  
-import pandas as pd
-import os
-from google.cloud import bigquery
-from google.cloud import storage
+import requests, asyncio, os
 from google.api_core import exceptions
+import logging, aiohttp
+from tenacity import retry, wait_exponential, stop_after_attempt, retry_if_exception_type
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -18,44 +14,52 @@ def fetch_fpl_data(url):
         response.raise_for_status()
         static_data = response.json() 
 
-        print(f"Fetched succesfully.")
+        print(f"Fetched successfully.")
         return static_data
     
     except requests.exceptions.RequestException as e:
         print(f"Unexpected error occured: {e}")
         return False
 
-def get_player_urls():
-    bq_client = bigquery.Client()
-    query = 'SELECT player_id FROM `fpl-analytics-488811.curated_player_data.player_taxonomies`'
-    query_job = bq_client.query(query)
-
-    return [f"https://fantasy.premierleague.com/api/element-summary/{row['player_id']}/" for row in query_job]
-
+@retry(stop=stop_after_attempt(3), wait=wait_exponential(min=2, max=10), retry=retry_if_exception_type(aiohttp.ClientError), reraise=True)
 async def fetch_player_data(session, url, semaphore):
-    async with semaphore: 
-        print(f"Fetching: {url}")
-
+    async with semaphore:
         API_KEY = os.getenv("SCRAPER_API_KEY")
         scraperapi_url = f"http://api.scraperapi.com?api_key={API_KEY}&url={url}"
-
         headers = {'User-Agent': 'Mozilla/5.0'}
 
         async with session.get(scraperapi_url, headers=headers) as response:
-            await asyncio.sleep(5)
             data = await response.json()
-            print(f"Completed task: {url}")
-            return data["history"]
 
-async def fetch_player_histories(urls):
-    semaphore = asyncio.Semaphore(10)
+            return (url, data["history"], None)
+
+async def safe_fetch(session, url, semaphore, logging_context):
+    try:
+        return await fetch_player_data(session, url, semaphore)
+    
+    except Exception as e:
+        logging.warning(
+            f"Failed to extract url: {url}. Continuing...",
+            exc_info=True,
+            extra={"json_fields":logging_context}
+        )
+        return (url, None, str(e))
+        
+async def fetch_player_histories(urls, logging_context):
+    semaphore = asyncio.Semaphore(5)
     connector = aiohttp.TCPConnector(limit=5)
     
     async with aiohttp.ClientSession(connector=connector) as session:
-        tasks = [fetch_player_data(session, url, semaphore) for url in urls]
+        tasks = [safe_fetch(session, url, semaphore, logging_context) for url in urls]
         results = await asyncio.gather(*tasks)
 
-        flat_history = [item for sublist in results if sublist for item in sublist]
-        return flat_history
+        gathered_data = []
+        failures = []
 
+        for result in results:
+            if result[1]:
+                gathered_data.extend(result[1])
+            else:
+                failures.append((result[0], result[2]))
 
+        return [gathered_data, failures]

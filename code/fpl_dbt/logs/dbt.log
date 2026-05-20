@@ -37987,3 +37987,352 @@ SELECT * FROM source_data
 [0m20:08:08.015247 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1322d5c70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x132282f90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12609e3d0>]}
 [0m20:08:08.015363 [debug] [MainThread]: Flushing usage events
 [0m20:08:09.315549 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m10:49:05.476233 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11f55cad0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12d9bfc50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12d9bfd90>]}
+
+
+============================== 10:49:05.478047 | 199a5064-bb00-47e6-b80a-05fa7add8cf4 ==============================
+[0m10:49:05.478047 [info ] [MainThread]: Running with dbt=1.11.6
+[0m10:49:05.478281 [debug] [MainThread]: running dbt with arguments {'no_print': 'None', 'static_parser': 'True', 'printer_width': '80', 'version_check': 'True', 'introspect': 'True', 'fail_fast': 'False', 'write_json': 'True', 'profiles_dir': '/Users/sparelaptop4/.dbt', 'partial_parse': 'True', 'use_colors': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'send_anonymous_usage_stats': 'True', 'invocation_command': 'dbt ', 'quiet': 'False', 'warn_error': 'None', 'debug': 'False', 'empty': 'False', 'log_format': 'default', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'cache_selected_only': 'False', 'target_path': 'None', 'log_cache_events': 'False', 'log_path': 'fpl_dbt/logs'}
+[0m10:49:05.688243 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '199a5064-bb00-47e6-b80a-05fa7add8cf4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11f94fa80>]}
+[0m10:49:05.706633 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '199a5064-bb00-47e6-b80a-05fa7add8cf4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12e8e5bf0>]}
+[0m10:49:05.706875 [info ] [MainThread]: Registered adapter: bigquery=1.11.1
+[0m10:49:05.774071 [debug] [MainThread]: checksum: edaa08aff553bab04ed6fb7519c1bfb71f7a6f92f30bcf4d335d3215fdb408c6, vars: {'input_table': 'fpl-analytics-488811.temporary.temp_raw_player_stats',
+ 'output_table': 'fpl-analytics-488811.raw_player.raw_player_stats'}, profile: , target: , version: 1.11.6
+[0m10:49:05.802290 [info ] [MainThread]: Unable to do partial parsing because config vars, config profile, or config target have changed
+[0m10:49:05.802479 [debug] [MainThread]: previous checksum: edaa08aff553bab04ed6fb7519c1bfb71f7a6f92f30bcf4d335d3215fdb408c6, current checksum: 8f2c5cba03e03da9fe2b07b6fa1e0bbf4bc5cde0de1e1868f6d0bfb2b7c97062
+[0m10:49:05.802610 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '199a5064-bb00-47e6-b80a-05fa7add8cf4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12eb5d950>]}
+[0m10:49:06.247034 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '199a5064-bb00-47e6-b80a-05fa7add8cf4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12eb777a0>]}
+[0m10:49:06.271539 [debug] [MainThread]: Wrote artifact WritableManifest to fpl_dbt/target/manifest.json
+[0m10:49:06.272488 [debug] [MainThread]: Wrote artifact SemanticManifest to fpl_dbt/target/semantic_manifest.json
+[0m10:49:06.283611 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '199a5064-bb00-47e6-b80a-05fa7add8cf4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12eadba10>]}
+[0m10:49:06.283843 [info ] [MainThread]: Found 21 models, 17 sources, 540 macros
+[0m10:49:06.283971 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '199a5064-bb00-47e6-b80a-05fa7add8cf4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12f84d4a0>]}
+[0m10:49:06.284591 [info ] [MainThread]: 
+[0m10:49:06.284713 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m10:49:06.284806 [info ] [MainThread]: 
+[0m10:49:06.284978 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m10:49:06.285301 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_fpl-analytics-488811'
+[0m10:49:06.285460 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m10:49:07.527284 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_fpl-analytics-488811, now list_fpl-analytics-488811_stg_player)
+[0m10:49:07.528167 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_fpl-analytics-488811_curated_fixture'
+[0m10:49:07.528514 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m10:49:07.529043 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_fpl-analytics-488811_raw_player'
+[0m10:49:07.529448 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m10:49:07.529780 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_fpl-analytics-488811_fpl_prod'
+[0m10:49:07.530218 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m10:49:07.596645 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m10:49:08.711680 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_fpl-analytics-488811_raw_player, now list_fpl-analytics-488811_stg_fixture)
+[0m10:49:08.713001 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m10:49:08.787555 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_fpl-analytics-488811_fpl_prod, now list_fpl-analytics-488811_curated_team)
+[0m10:49:08.788146 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m10:49:08.833068 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_fpl-analytics-488811_stg_player, now list_fpl-analytics-488811_curated_player)
+[0m10:49:08.833364 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m10:49:09.891661 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '199a5064-bb00-47e6-b80a-05fa7add8cf4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12fccc110>]}
+[0m10:49:09.892187 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m10:49:09.955901 [debug] [Thread-1 (]: Began running node model.fpl_analytics.raw_player_merge
+[0m10:49:09.956125 [info ] [Thread-1 (]: 1 of 1 START sql incremental model raw_player.fpl-analytics-488811.raw_player.raw_player_stats  [RUN]
+[0m10:49:09.956292 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_fpl-analytics-488811_curated_player, now model.fpl_analytics.raw_player_merge)
+[0m10:49:09.956414 [debug] [Thread-1 (]: Began compiling node model.fpl_analytics.raw_player_merge
+[0m10:49:09.959745 [debug] [Thread-1 (]: Writing injected SQL for node "model.fpl_analytics.raw_player_merge"
+[0m10:49:09.960059 [debug] [Thread-1 (]: Began executing node model.fpl_analytics.raw_player_merge
+[0m10:49:09.983489 [debug] [Thread-1 (]: Writing runtime sql for node "model.fpl_analytics.raw_player_merge"
+[0m10:49:09.983874 [debug] [Thread-1 (]: On model.fpl_analytics.raw_player_merge: /* {"app": "dbt", "dbt_version": "1.11.6", "profile_name": "fpl_analytics", "target_name": "dev", "node_id": "model.fpl_analytics.raw_player_merge"} */
+
+  
+    
+
+    create or replace table `fpl-analytics-488811`.`raw_player`.`fpl-analytics-488811.raw_player.raw_player_stats`
+      
+    
+    
+
+    
+    OPTIONS()
+    as (
+      
+
+WITH source_data AS (
+    SELECT * FROM fpl-analytics-488811.temporary.temp_raw_player_stats
+)
+
+SELECT * FROM source_data
+
+
+    );
+  
+[0m10:49:09.984032 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m10:49:11.219871 [debug] [Thread-1 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=fpl-analytics-488811&j=bq:europe-west2:9e152c6a-1f70-4129-af61-faa3c6ead95e&page=queryresults
+[0m10:49:11.220388 [error] [Thread-1 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=fpl-analytics-488811&j=bq:europe-west2:9e152c6a-1f70-4129-af61-faa3c6ead95e&page=queryresults
+[0m10:49:11.232616 [debug] [Thread-1 (]: Database Error in model raw_player_merge (models/raw_player/raw_player_merge.sql)
+  Not found: Dataset fpl-analytics-488811:raw_player.fpl-analytics-488811.raw_player was not found in location europe-west2
+  compiled code at target/run/fpl_analytics/models/raw_player/raw_player_merge.sql
+[0m10:49:11.233974 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '199a5064-bb00-47e6-b80a-05fa7add8cf4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12fc8db20>]}
+[0m10:49:11.234406 [error] [Thread-1 (]: 1 of 1 ERROR creating sql incremental model raw_player.fpl-analytics-488811.raw_player.raw_player_stats  [[31mERROR[0m in 1.28s]
+[0m10:49:11.234725 [debug] [Thread-1 (]: Finished running node model.fpl_analytics.raw_player_merge
+[0m10:49:11.235037 [debug] [Thread-7 (]: Marking all children of 'model.fpl_analytics.raw_player_merge' to be skipped because of status 'error'.  Reason: Database Error in model raw_player_merge (models/raw_player/raw_player_merge.sql)
+  Not found: Dataset fpl-analytics-488811:raw_player.fpl-analytics-488811.raw_player was not found in location europe-west2
+  compiled code at target/run/fpl_analytics/models/raw_player/raw_player_merge.sql.
+[0m10:49:11.236127 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m10:49:11.288107 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m10:49:11.288304 [debug] [MainThread]: Connection 'model.fpl_analytics.raw_player_merge' was properly closed.
+[0m10:49:11.288398 [debug] [MainThread]: Connection 'list_fpl-analytics-488811_curated_fixture' was properly closed.
+[0m10:49:11.288481 [debug] [MainThread]: Connection 'list_fpl-analytics-488811_stg_fixture' was properly closed.
+[0m10:49:11.288561 [debug] [MainThread]: Connection 'list_fpl-analytics-488811_curated_team' was properly closed.
+[0m10:49:11.288667 [info ] [MainThread]: 
+[0m10:49:11.288912 [info ] [MainThread]: Finished running 1 incremental model in 0 hours 0 minutes and 5.00 seconds (5.00s).
+[0m10:49:11.289220 [debug] [MainThread]: Command end result
+[0m10:49:11.302776 [debug] [MainThread]: Wrote artifact WritableManifest to fpl_dbt/target/manifest.json
+[0m10:49:11.303559 [debug] [MainThread]: Wrote artifact SemanticManifest to fpl_dbt/target/semantic_manifest.json
+[0m10:49:11.305454 [debug] [MainThread]: Wrote artifact RunExecutionResult to fpl_dbt/target/run_results.json
+[0m10:49:11.305569 [info ] [MainThread]: 
+[0m10:49:11.305781 [info ] [MainThread]: [31mCompleted with 1 error, 0 partial successes, and 0 warnings:[0m
+[0m10:49:11.305930 [info ] [MainThread]: 
+[0m10:49:11.306079 [error] [MainThread]: [31mFailure in model raw_player_merge (models/raw_player/raw_player_merge.sql)[0m
+[0m10:49:11.306207 [error] [MainThread]:   Database Error in model raw_player_merge (models/raw_player/raw_player_merge.sql)
+  Not found: Dataset fpl-analytics-488811:raw_player.fpl-analytics-488811.raw_player was not found in location europe-west2
+  compiled code at target/run/fpl_analytics/models/raw_player/raw_player_merge.sql
+[0m10:49:11.306309 [info ] [MainThread]: 
+[0m10:49:11.306423 [info ] [MainThread]:   compiled code at target/compiled/fpl_analytics/models/raw_player/raw_player_merge.sql
+[0m10:49:11.306516 [info ] [MainThread]: 
+[0m10:49:11.306625 [info ] [MainThread]: Done. PASS=0 WARN=0 ERROR=1 SKIP=0 NO-OP=0 TOTAL=1
+[0m10:49:11.320914 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 5.879786, "process_in_blocks": "0", "process_kernel_time": 0.301991, "process_mem_max_rss": "260833280", "process_out_blocks": "0", "process_user_time": 2.578239}
+[0m10:49:11.321105 [debug] [MainThread]: Command `cli run` failed at 10:49:11.321068 after 5.88 seconds
+[0m10:49:11.321249 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12fa61630>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12fb23c80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12fa33dd0>]}
+[0m10:49:11.321374 [debug] [MainThread]: Flushing usage events
+[0m10:49:12.285153 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m10:50:42.897936 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11a9e4ad0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11dbc3c50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11dbc3d90>]}
+
+
+============================== 10:50:42.899806 | 2aae904d-1c3b-40c2-b453-2ebd7ed74dc8 ==============================
+[0m10:50:42.899806 [info ] [MainThread]: Running with dbt=1.11.6
+[0m10:50:42.900037 [debug] [MainThread]: running dbt with arguments {'introspect': 'True', 'log_path': 'fpl_dbt/logs', 'target_path': 'None', 'use_experimental_parser': 'False', 'log_cache_events': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'no_print': 'None', 'partial_parse': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'indirect_selection': 'eager', 'write_json': 'True', 'quiet': 'False', 'use_colors': 'True', 'cache_selected_only': 'False', 'printer_width': '80', 'empty': 'False', 'debug': 'False', 'version_check': 'True', 'profiles_dir': '/Users/sparelaptop4/.dbt', 'log_format': 'default', 'invocation_command': 'dbt ', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m10:50:43.103218 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '2aae904d-1c3b-40c2-b453-2ebd7ed74dc8', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11b18fa80>]}
+[0m10:50:43.121577 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '2aae904d-1c3b-40c2-b453-2ebd7ed74dc8', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11e3f5bf0>]}
+[0m10:50:43.121819 [info ] [MainThread]: Registered adapter: bigquery=1.11.1
+[0m10:50:43.179100 [debug] [MainThread]: checksum: 2fe16a695abeaf22153661f3cf667e2dc4460e97235999cc8ac2f475656c4782, vars: {'input_table': 'temp_raw_player_stats', 'output_table': 'raw_player_stats'}, profile: , target: , version: 1.11.6
+[0m10:50:43.207451 [info ] [MainThread]: Unable to do partial parsing because config vars, config profile, or config target have changed
+[0m10:50:43.207654 [debug] [MainThread]: previous checksum: 2fe16a695abeaf22153661f3cf667e2dc4460e97235999cc8ac2f475656c4782, current checksum: edaa08aff553bab04ed6fb7519c1bfb71f7a6f92f30bcf4d335d3215fdb408c6
+[0m10:50:43.207787 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '2aae904d-1c3b-40c2-b453-2ebd7ed74dc8', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11e659950>]}
+[0m10:50:43.638444 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '2aae904d-1c3b-40c2-b453-2ebd7ed74dc8', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11e6737a0>]}
+[0m10:50:43.661266 [debug] [MainThread]: Wrote artifact WritableManifest to fpl_dbt/target/manifest.json
+[0m10:50:43.661984 [debug] [MainThread]: Wrote artifact SemanticManifest to fpl_dbt/target/semantic_manifest.json
+[0m10:50:43.672327 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '2aae904d-1c3b-40c2-b453-2ebd7ed74dc8', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11e5d25f0>]}
+[0m10:50:43.672498 [info ] [MainThread]: Found 21 models, 17 sources, 540 macros
+[0m10:50:43.672617 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '2aae904d-1c3b-40c2-b453-2ebd7ed74dc8', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11fb594a0>]}
+[0m10:50:43.673242 [info ] [MainThread]: 
+[0m10:50:43.673358 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m10:50:43.673448 [info ] [MainThread]: 
+[0m10:50:43.673606 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m10:50:43.673908 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_fpl-analytics-488811'
+[0m10:50:43.674062 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m10:50:44.751915 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_fpl-analytics-488811, now list_fpl-analytics-488811_curated_player)
+[0m10:50:44.752217 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m10:50:44.752428 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_fpl-analytics-488811_fpl_prod'
+[0m10:50:44.752606 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_fpl-analytics-488811_stg_player'
+[0m10:50:44.752825 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_fpl-analytics-488811_curated_fixture'
+[0m10:50:44.753029 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m10:50:44.798601 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m10:50:44.800686 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m10:50:46.066879 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_fpl-analytics-488811_fpl_prod, now list_fpl-analytics-488811_curated_team)
+[0m10:50:46.068524 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m10:50:46.133166 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_fpl-analytics-488811_stg_player, now list_fpl-analytics-488811_raw_player)
+[0m10:50:46.133537 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m10:50:46.177981 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_fpl-analytics-488811_curated_player, now list_fpl-analytics-488811_stg_fixture)
+[0m10:50:46.178401 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m10:50:47.189038 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '2aae904d-1c3b-40c2-b453-2ebd7ed74dc8', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1288d4650>]}
+[0m10:50:47.189897 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m10:50:47.261781 [debug] [Thread-1 (]: Began running node model.fpl_analytics.raw_player_merge
+[0m10:50:47.262083 [info ] [Thread-1 (]: 1 of 1 START sql incremental model raw_player.raw_player_stats ................. [RUN]
+[0m10:50:47.262271 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_fpl-analytics-488811_stg_fixture, now model.fpl_analytics.raw_player_merge)
+[0m10:50:47.262404 [debug] [Thread-1 (]: Began compiling node model.fpl_analytics.raw_player_merge
+[0m10:50:47.266743 [debug] [Thread-1 (]: Writing injected SQL for node "model.fpl_analytics.raw_player_merge"
+[0m10:50:47.267070 [debug] [Thread-1 (]: Began executing node model.fpl_analytics.raw_player_merge
+[0m10:50:47.279668 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m10:50:48.501441 [debug] [Thread-1 (]: Writing runtime sql for node "model.fpl_analytics.raw_player_merge"
+[0m10:50:48.502077 [debug] [Thread-1 (]: On model.fpl_analytics.raw_player_merge: /* {"app": "dbt", "dbt_version": "1.11.6", "profile_name": "fpl_analytics", "target_name": "dev", "node_id": "model.fpl_analytics.raw_player_merge"} */
+-- back compat for old kwarg name
+  
+  
+        
+    
+
+    
+
+    merge into `fpl-analytics-488811`.`raw_player`.`raw_player_stats` as DBT_INTERNAL_DEST
+        using (
+
+WITH source_data AS (
+    SELECT * FROM temp_raw_player_stats
+)
+
+SELECT * FROM source_data
+
+
+
+  EXCEPT DISTINCT
+  SELECT * FROM `fpl-analytics-488811`.`raw_player`.`raw_player_stats`
+
+
+        ) as DBT_INTERNAL_SOURCE
+        on (FALSE)
+
+    
+
+    when not matched then insert
+        (`element`, `fixture`, `opponent_team`, `total_points`, `was_home`, `kickoff_time`, `team_h_score`, `team_a_score`, `round`, `modified`, `minutes`, `goals_scored`, `assists`, `clean_sheets`, `goals_conceded`, `own_goals`, `penalties_saved`, `penalties_missed`, `yellow_cards`, `red_cards`, `saves`, `bonus`, `bps`, `influence`, `creativity`, `threat`, `ict_index`, `clearances_blocks_interceptions`, `recoveries`, `tackles`, `defensive_contribution`, `starts`, `expected_goals`, `expected_assists`, `expected_goal_involvements`, `expected_goals_conceded`, `value`, `transfers_balance`, `selected`, `transfers_in`, `transfers_out`)
+    values
+        (`element`, `fixture`, `opponent_team`, `total_points`, `was_home`, `kickoff_time`, `team_h_score`, `team_a_score`, `round`, `modified`, `minutes`, `goals_scored`, `assists`, `clean_sheets`, `goals_conceded`, `own_goals`, `penalties_saved`, `penalties_missed`, `yellow_cards`, `red_cards`, `saves`, `bonus`, `bps`, `influence`, `creativity`, `threat`, `ict_index`, `clearances_blocks_interceptions`, `recoveries`, `tackles`, `defensive_contribution`, `starts`, `expected_goals`, `expected_assists`, `expected_goal_involvements`, `expected_goals_conceded`, `value`, `transfers_balance`, `selected`, `transfers_in`, `transfers_out`)
+
+
+    
+[0m10:50:48.830265 [debug] [Thread-1 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=fpl-analytics-488811&j=bq:europe-west2:b1e6addb-f586-4c49-b223-a6366298b7ca&page=queryresults
+[0m10:50:48.831553 [error] [Thread-1 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=fpl-analytics-488811&j=bq:europe-west2:b1e6addb-f586-4c49-b223-a6366298b7ca&page=queryresults
+[0m10:50:48.848915 [debug] [Thread-1 (]: Database Error in model raw_player_merge (models/raw_player/raw_player_merge.sql)
+  Table "temp_raw_player_stats" must be qualified with a dataset (e.g. dataset.table).
+  compiled code at target/run/fpl_analytics/models/raw_player/raw_player_merge.sql
+[0m10:50:48.851924 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '2aae904d-1c3b-40c2-b453-2ebd7ed74dc8', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1288c5bd0>]}
+[0m10:50:48.852668 [error] [Thread-1 (]: 1 of 1 ERROR creating sql incremental model raw_player.raw_player_stats ........ [[31mERROR[0m in 1.59s]
+[0m10:50:48.853184 [debug] [Thread-1 (]: Finished running node model.fpl_analytics.raw_player_merge
+[0m10:50:48.853644 [debug] [Thread-7 (]: Marking all children of 'model.fpl_analytics.raw_player_merge' to be skipped because of status 'error'.  Reason: Database Error in model raw_player_merge (models/raw_player/raw_player_merge.sql)
+  Table "temp_raw_player_stats" must be qualified with a dataset (e.g. dataset.table).
+  compiled code at target/run/fpl_analytics/models/raw_player/raw_player_merge.sql.
+[0m10:50:48.855623 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m10:50:48.914966 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m10:50:48.915167 [debug] [MainThread]: Connection 'model.fpl_analytics.raw_player_merge' was properly closed.
+[0m10:50:48.915270 [debug] [MainThread]: Connection 'list_fpl-analytics-488811_curated_team' was properly closed.
+[0m10:50:48.915358 [debug] [MainThread]: Connection 'list_fpl-analytics-488811_raw_player' was properly closed.
+[0m10:50:48.915441 [debug] [MainThread]: Connection 'list_fpl-analytics-488811_curated_fixture' was properly closed.
+[0m10:50:48.915556 [info ] [MainThread]: 
+[0m10:50:48.915668 [info ] [MainThread]: Finished running 1 incremental model in 0 hours 0 minutes and 5.24 seconds (5.24s).
+[0m10:50:48.915917 [debug] [MainThread]: Command end result
+[0m10:50:48.935834 [debug] [MainThread]: Wrote artifact WritableManifest to fpl_dbt/target/manifest.json
+[0m10:50:48.937883 [debug] [MainThread]: Wrote artifact SemanticManifest to fpl_dbt/target/semantic_manifest.json
+[0m10:50:48.943827 [debug] [MainThread]: Wrote artifact RunExecutionResult to fpl_dbt/target/run_results.json
+[0m10:50:48.944195 [info ] [MainThread]: 
+[0m10:50:48.944518 [info ] [MainThread]: [31mCompleted with 1 error, 0 partial successes, and 0 warnings:[0m
+[0m10:50:48.944774 [info ] [MainThread]: 
+[0m10:50:48.945055 [error] [MainThread]: [31mFailure in model raw_player_merge (models/raw_player/raw_player_merge.sql)[0m
+[0m10:50:48.945325 [error] [MainThread]:   Database Error in model raw_player_merge (models/raw_player/raw_player_merge.sql)
+  Table "temp_raw_player_stats" must be qualified with a dataset (e.g. dataset.table).
+  compiled code at target/run/fpl_analytics/models/raw_player/raw_player_merge.sql
+[0m10:50:48.945529 [info ] [MainThread]: 
+[0m10:50:48.945769 [info ] [MainThread]:   compiled code at target/compiled/fpl_analytics/models/raw_player/raw_player_merge.sql
+[0m10:50:48.945970 [info ] [MainThread]: 
+[0m10:50:48.948033 [info ] [MainThread]: Done. PASS=0 WARN=0 ERROR=1 SKIP=0 NO-OP=0 TOTAL=1
+[0m10:50:48.951612 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 6.0866356, "process_in_blocks": "0", "process_kernel_time": 0.298665, "process_mem_max_rss": "263290880", "process_out_blocks": "0", "process_user_time": 2.584871}
+[0m10:50:48.951882 [debug] [MainThread]: Command `cli run` failed at 10:50:48.951844 after 6.09 seconds
+[0m10:50:48.952035 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11fc61450>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1288e47a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11fc37dd0>]}
+[0m10:50:48.952168 [debug] [MainThread]: Flushing usage events
+[0m10:50:50.210715 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m10:54:21.724409 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x110338ad0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11135bc50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11135bd90>]}
+
+
+============================== 10:54:21.726135 | 04431ce1-30ff-44b2-a9c5-a818bd645908 ==============================
+[0m10:54:21.726135 [info ] [MainThread]: Running with dbt=1.11.6
+[0m10:54:21.726377 [debug] [MainThread]: running dbt with arguments {'no_print': 'None', 'invocation_command': 'dbt ', 'quiet': 'False', 'send_anonymous_usage_stats': 'True', 'write_json': 'True', 'log_path': 'fpl_dbt/logs', 'static_parser': 'True', 'empty': 'False', 'profiles_dir': '/Users/sparelaptop4/.dbt', 'cache_selected_only': 'False', 'indirect_selection': 'eager', 'partial_parse': 'True', 'introspect': 'True', 'fail_fast': 'False', 'log_format': 'default', 'warn_error': 'None', 'debug': 'False', 'version_check': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'printer_width': '80', 'use_colors': 'True', 'log_cache_events': 'False', 'use_experimental_parser': 'False'}
+[0m10:54:21.933275 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '04431ce1-30ff-44b2-a9c5-a818bd645908', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11072ba80>]}
+[0m10:54:21.951567 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '04431ce1-30ff-44b2-a9c5-a818bd645908', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111995bf0>]}
+[0m10:54:21.951810 [info ] [MainThread]: Registered adapter: bigquery=1.11.1
+[0m10:54:22.008132 [debug] [MainThread]: checksum: 8f2c5cba03e03da9fe2b07b6fa1e0bbf4bc5cde0de1e1868f6d0bfb2b7c97062, vars: {'input_table': 'fpl-analytics-488811.temporary.temp_raw_player_stats',
+ 'output_table': 'raw_player_stats'}, profile: , target: , version: 1.11.6
+[0m10:54:22.036929 [info ] [MainThread]: Unable to do partial parsing because config vars, config profile, or config target have changed
+[0m10:54:22.037156 [debug] [MainThread]: previous checksum: 8f2c5cba03e03da9fe2b07b6fa1e0bbf4bc5cde0de1e1868f6d0bfb2b7c97062, current checksum: 2fe16a695abeaf22153661f3cf667e2dc4460e97235999cc8ac2f475656c4782
+[0m10:54:22.037294 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '04431ce1-30ff-44b2-a9c5-a818bd645908', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111bf5950>]}
+[0m10:54:22.465997 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '04431ce1-30ff-44b2-a9c5-a818bd645908', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111c0f7a0>]}
+[0m10:54:22.490261 [debug] [MainThread]: Wrote artifact WritableManifest to fpl_dbt/target/manifest.json
+[0m10:54:22.490984 [debug] [MainThread]: Wrote artifact SemanticManifest to fpl_dbt/target/semantic_manifest.json
+[0m10:54:22.501127 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '04431ce1-30ff-44b2-a9c5-a818bd645908', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111b6e5f0>]}
+[0m10:54:22.501298 [info ] [MainThread]: Found 21 models, 17 sources, 540 macros
+[0m10:54:22.501430 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '04431ce1-30ff-44b2-a9c5-a818bd645908', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111f094a0>]}
+[0m10:54:22.502054 [info ] [MainThread]: 
+[0m10:54:22.502179 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m10:54:22.502278 [info ] [MainThread]: 
+[0m10:54:22.502441 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m10:54:22.502741 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_fpl-analytics-488811'
+[0m10:54:22.502878 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m10:54:23.844780 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_fpl-analytics-488811, now list_fpl-analytics-488811_curated_player)
+[0m10:54:23.845605 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_fpl-analytics-488811_curated_fixture'
+[0m10:54:23.846056 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_fpl-analytics-488811_fpl_prod'
+[0m10:54:23.846353 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m10:54:23.846873 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_fpl-analytics-488811_stg_player'
+[0m10:54:23.847224 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m10:54:23.847509 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m10:54:23.847865 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m10:54:25.070286 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_fpl-analytics-488811_stg_player, now list_fpl-analytics-488811_raw_player)
+[0m10:54:25.075883 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_fpl-analytics-488811_curated_fixture, now list_fpl-analytics-488811_stg_fixture)
+[0m10:54:25.076211 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m10:54:25.081877 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_fpl-analytics-488811_fpl_prod, now list_fpl-analytics-488811_curated_team)
+[0m10:54:25.083635 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m10:54:25.085178 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m10:54:26.307322 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '04431ce1-30ff-44b2-a9c5-a818bd645908', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11224c350>]}
+[0m10:54:26.308153 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m10:54:26.374167 [debug] [Thread-1 (]: Began running node model.fpl_analytics.raw_player_merge
+[0m10:54:26.374528 [info ] [Thread-1 (]: 1 of 1 START sql incremental model raw_player.raw_player_stats ................. [RUN]
+[0m10:54:26.374768 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_fpl-analytics-488811_curated_player, now model.fpl_analytics.raw_player_merge)
+[0m10:54:26.375000 [debug] [Thread-1 (]: Began compiling node model.fpl_analytics.raw_player_merge
+[0m10:54:26.378870 [debug] [Thread-1 (]: Writing injected SQL for node "model.fpl_analytics.raw_player_merge"
+[0m10:54:26.379163 [debug] [Thread-1 (]: Began executing node model.fpl_analytics.raw_player_merge
+[0m10:54:26.392430 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m10:54:27.543728 [debug] [Thread-1 (]: Writing runtime sql for node "model.fpl_analytics.raw_player_merge"
+[0m10:54:27.544522 [debug] [Thread-1 (]: On model.fpl_analytics.raw_player_merge: /* {"app": "dbt", "dbt_version": "1.11.6", "profile_name": "fpl_analytics", "target_name": "dev", "node_id": "model.fpl_analytics.raw_player_merge"} */
+-- back compat for old kwarg name
+  
+  
+        
+    
+
+    
+
+    merge into `fpl-analytics-488811`.`raw_player`.`raw_player_stats` as DBT_INTERNAL_DEST
+        using (
+
+WITH source_data AS (
+    SELECT * FROM fpl-analytics-488811.temporary.temp_raw_player_stats
+)
+
+SELECT * FROM source_data
+
+
+
+  EXCEPT DISTINCT
+  SELECT * FROM `fpl-analytics-488811`.`raw_player`.`raw_player_stats`
+
+
+        ) as DBT_INTERNAL_SOURCE
+        on (FALSE)
+
+    
+
+    when not matched then insert
+        (`element`, `fixture`, `opponent_team`, `total_points`, `was_home`, `kickoff_time`, `team_h_score`, `team_a_score`, `round`, `modified`, `minutes`, `goals_scored`, `assists`, `clean_sheets`, `goals_conceded`, `own_goals`, `penalties_saved`, `penalties_missed`, `yellow_cards`, `red_cards`, `saves`, `bonus`, `bps`, `influence`, `creativity`, `threat`, `ict_index`, `clearances_blocks_interceptions`, `recoveries`, `tackles`, `defensive_contribution`, `starts`, `expected_goals`, `expected_assists`, `expected_goal_involvements`, `expected_goals_conceded`, `value`, `transfers_balance`, `selected`, `transfers_in`, `transfers_out`)
+    values
+        (`element`, `fixture`, `opponent_team`, `total_points`, `was_home`, `kickoff_time`, `team_h_score`, `team_a_score`, `round`, `modified`, `minutes`, `goals_scored`, `assists`, `clean_sheets`, `goals_conceded`, `own_goals`, `penalties_saved`, `penalties_missed`, `yellow_cards`, `red_cards`, `saves`, `bonus`, `bps`, `influence`, `creativity`, `threat`, `ict_index`, `clearances_blocks_interceptions`, `recoveries`, `tackles`, `defensive_contribution`, `starts`, `expected_goals`, `expected_assists`, `expected_goal_involvements`, `expected_goals_conceded`, `value`, `transfers_balance`, `selected`, `transfers_in`, `transfers_out`)
+
+
+    
+[0m10:54:28.240367 [debug] [Thread-1 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=fpl-analytics-488811&j=bq:europe-west2:81aed832-d436-41f1-93f4-23643c41d3b4&page=queryresults
+[0m10:54:30.474996 [debug] [Thread-1 (]: SQL status: OK in 2.233 seconds
+[0m10:54:30.537797 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '04431ce1-30ff-44b2-a9c5-a818bd645908', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x112238e10>]}
+[0m10:54:30.538200 [info ] [Thread-1 (]: 1 of 1 OK created sql incremental model raw_player.raw_player_stats ............ [[32mMERGE (187.0 rows, 10.3 MiB processed)[0m in 4.16s]
+[0m10:54:30.538480 [debug] [Thread-1 (]: Finished running node model.fpl_analytics.raw_player_merge
+[0m10:54:30.539086 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m10:54:30.584857 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m10:54:30.585031 [debug] [MainThread]: Connection 'model.fpl_analytics.raw_player_merge' was properly closed.
+[0m10:54:30.585117 [debug] [MainThread]: Connection 'list_fpl-analytics-488811_stg_fixture' was properly closed.
+[0m10:54:30.585195 [debug] [MainThread]: Connection 'list_fpl-analytics-488811_curated_team' was properly closed.
+[0m10:54:30.585267 [debug] [MainThread]: Connection 'list_fpl-analytics-488811_raw_player' was properly closed.
+[0m10:54:30.585365 [info ] [MainThread]: 
+[0m10:54:30.585479 [info ] [MainThread]: Finished running 1 incremental model in 0 hours 0 minutes and 8.08 seconds (8.08s).
+[0m10:54:30.585733 [debug] [MainThread]: Command end result
+[0m10:54:30.595826 [debug] [MainThread]: Wrote artifact WritableManifest to fpl_dbt/target/manifest.json
+[0m10:54:30.596600 [debug] [MainThread]: Wrote artifact SemanticManifest to fpl_dbt/target/semantic_manifest.json
+[0m10:54:30.598533 [debug] [MainThread]: Wrote artifact RunExecutionResult to fpl_dbt/target/run_results.json
+[0m10:54:30.598639 [info ] [MainThread]: 
+[0m10:54:30.598779 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m10:54:30.598882 [info ] [MainThread]: 
+[0m10:54:30.598992 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=1
+[0m10:54:30.601245 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 8.90788, "process_in_blocks": "0", "process_kernel_time": 0.357788, "process_mem_max_rss": "262275072", "process_out_blocks": "0", "process_user_time": 2.555863}
+[0m10:54:30.601394 [debug] [MainThread]: Command `cli run` succeeded at 10:54:30.601365 after 8.91 seconds
+[0m10:54:30.601507 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111ffc0f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111e02210>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111fcfdd0>]}
+[0m10:54:30.601614 [debug] [MainThread]: Flushing usage events
+[0m10:54:36.520408 [debug] [MainThread]: An error was encountered while trying to flush usage events

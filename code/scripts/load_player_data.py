@@ -1,49 +1,149 @@
-import os
-from datetime import date
-from google.cloud import storage
-from google.cloud import bigquery
-import asyncio
+import os, json, asyncio
+from datetime import datetime, date
+from google.cloud import storage, bigquery
+import pandas_gbq, pandas as pd
+import logging, google.cloud.logging, uuid
 from dotenv import load_dotenv
 load_dotenv()
 
 from src.extract.fpl_api import fetch_player_histories
 from src.load.gcs_functions import load_to_storage
 from src.load.bq_functions import gcs_to_bq
+from src.transform.bq_functions import merge
 
-client = bigquery.Client()
-query ="""
-    WITH todays_teams AS (
-        SELECT
-        team_h AS team_id
-        FROM `fpl-analytics-488811.stg_fixture.stg_fixture_data`
-        WHERE date = DATE_SUB(CURRENT_DATE('Europe/London'), INTERVAL 1 DAY )
+def initialise_logging():
+    logging_client = google.cloud.logging.Client()
+    logging_client.setup_logging()
 
-        UNION ALL
+def fetch_data():
+    RUN_ID = str(uuid.uuid4())
 
-        SELECT
-        team_a AS team_id
-        FROM `fpl-analytics-488811.stg_fixture.stg_fixture_data`
-        WHERE date = DATE_SUB(CURRENT_DATE('Europe/London'), INTERVAL 1 DAY )
-    )
+    logging_context = {
+        "run_id" : RUN_ID,
+        "pipeline_phase" : "bigquery_extraction"
+    }
 
-    SELECT
-    DISTINCT(player_id)
-    FROM `fpl-analytics-488811.curated_player.cur_player_taxonomies`
-    WHERE team_id IN (SELECT team_id FROM todays_teams)
-    """ 
+    logging.info("Starting player data pipeline.", extra={"json_fields":logging_context})
 
-query_job = client.query(query)
-player_urls = [f"https://fantasy.premierleague.com/api/element-summary/{row['player_id']}/" for row in query_job]
+    try:
+        bq_client = bigquery.Client()
+        sql_file = "src/queries/player_ids.sql"
 
-if player_urls:
-    player_histories = asyncio.run(fetch_player_histories(player_urls))
+        with open(sql_file, 'r') as file:
+            query = file.read()
+
+        query_job = bq_client.query(query)
+
+        player_urls = [f"https://fantasy.premierleague.com/api/element-summary/{row['player_id']}/" for row in query_job]
+        url_count = len(player_urls)
+
+    except Exception:
+        logging.critical(
+            "Failed to extract player ids from BigQuery. Stopping pipeline.",
+            exc_info=True,
+            extra={"json_fields":logging_context}
+        )
+        return
+
+    if url_count == 0:
+        logging.info("No player data to fetch today. Pipeline complete.", extra={"json_fields":logging_context})
+        return
+    
+    logging.info(f"Successfully fetched {url_count} player urls. Fetching data...", extra={"json_fields":logging_context})
+
+    logging_context["pipeline_phase"] = "data_extraction"
+    logging_context["player_count"] = url_count
+    
+    player_histories, failures = asyncio.run(fetch_player_histories(player_urls, logging_context))
+    failure_count = len(failures)
+    failed_urls = [item[0] for item in failures]
+    
+    if len(player_histories) == 0:
+        logging.critical(f"Failed to collect any player data. Stopping pipeline.", extra={"json_fields":logging_context})
+        return
+
+    elif failure_count == 0:
+        logging.info(f"Successfully collected data for all players. Continuing...", extra={"json_fields":logging_context})
+
+    else:
+        logging.warning(f"Failed to collect data for {failure_count} urls: {failed_urls}. Continuing...", extra={"json_fields":logging_context})
+    
+    logging_context["failure_count"] = failure_count
+    logging_context["failed_urls"] = failed_urls
+
+    if failures:
+        try:
+            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
+            failure_data = [{"URL" : url, "timestamp" : timestamp, "reason":reason} for url, reason in failures]
+            failed_df = pd.DataFrame(failure_data)
+            failed_table = "fpl-analytics-488811.raw_player.failed_data_collection"
+            pandas_gbq.to_gbq(failed_df, failed_table, if_exists='append')
+        
+        except Exception:
+            logging.critical(
+                "Couldn't load failed urls to BigQuery. Continuing...",
+                exc_info=True,
+                extra={"json_fields":logging_context}
+            )
 
     current_date = date.today().isoformat()
-
     gcs_path = f"raw-fpl-player-stats/raw-stats-{current_date}.json"
-    client = storage.Client()
-    bucket = client.bucket(os.getenv("GCS_BUCKET_NAME"))
-    load_to_storage(bucket, gcs_path, player_histories)
+    logging.info(f"Uploading player data to {gcs_path}.", extra={"json_fields":logging_context})
+    logging_context["pipeline_phase"] = "uploading_data"
+    
+    try:
+        client = storage.Client()
+        bucket = client.bucket(os.getenv("GCS_BUCKET_NAME"))
+        load_to_storage(bucket, gcs_path, player_histories)
+    
+    except Exception:
+        logging.critical(
+            "Couldn't upload player data to GCS. Stopping pipeline.",
+            exc_info=True,
+            extra={"json_fields":logging_context}
+        )
+        return
+    
+    logging.info(f"Successfully uploaded player data to GCS.", extra={"json_fields":logging_context})
 
-    table_id = "fpl-analytics-488811.raw_player.raw_player_stats"
-    gcs_to_bq(gcs_path, bucket, table_id, method="merge")
+    target_table = "raw_player_stats"
+    temp_id = "fpl-analytics-488811.temporary.temp_raw_player_stats"
+    model_name = "raw_player_merge"
+
+    logging.info(f"Uploading player data to {temp_id}...", extra={"json_fields":logging_context})
+    
+    try:
+        gcs_to_bq(gcs_path, bucket, temp_id)
+    
+    except Exception:
+        logging.critical(
+            f"Couldn't upload player data to {temp_id}. Stopping pipeline.",
+            exc_info=True,
+            extra={"json_fields":logging_context}
+        )
+        return
+    
+    logging.info(f"Successfully uploaded player data to {temp_id}.", extra={"json_fields":logging_context})
+
+    try:
+        logging.info(f"Merging player data into {target_table}...", extra={"json_fields":logging_context})
+        merge(temp_id, target_table, model_name)
+    
+    except Exception:
+        logging.critical(
+            f"Couldn't merge player data into {target_table}. Stopping pipeline.",
+            exc_info=True,
+            extra={"json_fields":logging_context}
+        )
+        return
+    
+    logging.info(f"Data successfully merged.", extra={"json_fields":logging_context})
+    logging_context["pipeline_phase"] = "complete"
+    logging.info(f"Pipeline execution complete.", extra={"json_fields":logging_context})
+
+def main():
+    initialise_logging()
+    fetch_data()
+
+if __name__ == "__main__":
+    main()
