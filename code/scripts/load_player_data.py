@@ -19,6 +19,8 @@ def initialise_logging():
     logging_client = google.cloud.logging.Client()
     logging_client.setup_logging()
 
+    logging.getLogger("pandas_gbq").setLevel(logging.WARNING)
+
 def fetch_data():
     RUN_ID = str(uuid.uuid4())
 
