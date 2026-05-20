@@ -50,7 +50,8 @@ def fetch_data():
         return
 
     if url_count == 0:
-        logging.info("No player data to fetch today. Pipeline complete.", extra={"json_fields":logging_context})
+        logging_context["pipeline_phase"] = "complete"
+        logging.info("No player data to fetch today. Pipeline execution complete.", extra={"json_fields":logging_context})
         return
     
     logging.info(f"Successfully fetched {url_count} player urls.", extra={"json_fields":logging_context})
@@ -67,7 +68,7 @@ def fetch_data():
         return
 
     elif failure_count == 0:
-        logging.info(f"Successfully collected data for all players. Continuing...", extra={"json_fields":logging_context})
+        logging.info(f"Successfully collected data for all players.", extra={"json_fields":logging_context})
 
     else:
         logging.warning(f"Failed to collect data for {failure_count} urls: {failed_urls}. Continuing...", extra={"json_fields":logging_context})
@@ -144,6 +145,7 @@ def fetch_data():
 def main():
     initialise_logging()
     fetch_data()
+    logging.shutdown()
 
 if __name__ == "__main__":
     main()
