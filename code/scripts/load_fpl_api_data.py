@@ -55,9 +55,9 @@ def fetch_data():
         )
         return
     
-    if not raw_data:
+    if len(raw_data) != len(api_urls):
         logging.critical(
-            "Failed to extract api data. Stopping pipeline.",
+            "Failed to extract all api data. Stopping pipeline.",
             exc_info=True,
             extra={"json_fields":logging_context}
         )
