@@ -27,6 +27,8 @@ def fetch_data():
         "pipeline_phase" : "bigquery_extraction"
     }
 
+    logging.info(f"Beginning player data pipeline.", extra={"json_fields":logging_context})
+
     try:
         bq_client = bigquery.Client()
 
@@ -83,9 +85,10 @@ def fetch_data():
             failed_df = pd.DataFrame(failure_data)
             failed_table = "fpl-analytics-488811.raw_player.failed_data_collection"
             pandas_gbq.to_gbq(failed_df, failed_table, if_exists='append')
+            logging.info(f"Uploaded failed urls to {failed_table}.", extra={"json_fields":logging_context})
         
         except Exception:
-            logging.critical(
+            logging.warning(
                 "Couldn't load failed urls to BigQuery. Continuing...",
                 exc_info=True,
                 extra={"json_fields":logging_context}
