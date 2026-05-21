@@ -146,11 +146,14 @@ def fetch_data():
     logging.info(f"Successfully merged player data into {target_table}.", extra={"json_fields":logging_context})
     logging_context["pipeline_phase"] = "complete"
     logging.info(f"Pipeline execution complete.", extra={"json_fields":logging_context})
+    return True
 
 def main():
     initialise_logging()
     fetch_data()
     logging.shutdown()
+    if fetch_data:
+        return True
 
 if __name__ == "__main__":
     main()
