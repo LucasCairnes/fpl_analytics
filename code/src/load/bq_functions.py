@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 @retry(stop=stop_after_attempt(3), wait=wait_exponential(min=2, max=10), reraise=True)
-def gcs_to_bq(gcs_path, bucket_name, table_id, write_disposition="WRITE_APPEND"):
+def gcs_to_bq(gcs_path, bucket_name, table_id, write_disposition="WRITE_TRUNCATE"):
     client = bigquery.Client(project=os.getenv("PROJECT_ID"))
     gcs_uri = f"gs://{bucket_name}/{gcs_path}"
     
