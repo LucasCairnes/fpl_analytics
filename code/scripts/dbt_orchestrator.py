@@ -14,6 +14,9 @@ def initialise_logging():
 def dbt_run(dbt, args):
     res: dbtRunnerResult = dbt.invoke(args)
 
+    if not res.success:
+        raise res.exception
+
 def execute_transforms():
     RUN_ID = str(uuid.uuid4())
 
@@ -22,7 +25,7 @@ def execute_transforms():
         "pipeline_phase" : "dbt_transforms"
     }
 
-    logging.info(f"Beginning dbt transfroms.", extra={"json_fields":logging_context})
+    logging.info(f"Beginning dbt transforms.", extra={"json_fields":logging_context})
 
     dbt = dbtRunner()
     model_names = ["staging", "curated", "prod"]
@@ -38,7 +41,7 @@ def execute_transforms():
             exc_info=True,
             extra={"json_fields":logging_context}
         )
-        return
+            return
     
     logging_context["pipeline_phase"] = "complete"
     logging.info(f"Dbt transforms complete.", extra={"json_fields":logging_context})
@@ -48,5 +51,5 @@ def main():
     execute_transforms()
     logging.shutdown()
 
-if __name__ == "__main___":
+if __name__ == "__main__":
     main()
