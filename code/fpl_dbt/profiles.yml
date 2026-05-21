@@ -1,0 +1,9 @@
+fpl_analytics:
+  target: prod
+  outputs:
+    prod:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('GCP_PROJECT_ID') }}"
+      threads: 4
+      location: europe-west2
