@@ -1,0 +1,6 @@
+.git
+__pycache__
+venv/
+.env
+code/fpl_dbt/target/
+code/fpl_dbt/dbt_packages/
