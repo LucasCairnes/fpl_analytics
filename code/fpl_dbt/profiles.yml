@@ -5,5 +5,6 @@ fpl_analytics:
       type: bigquery
       method: oauth
       project: "{{ env_var('PROJECT_ID') }}"
+      dataset: "{{ env_var('BQ_DATASET') }}"
       threads: 4
       location: europe-west2
