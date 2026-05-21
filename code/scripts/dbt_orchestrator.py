@@ -35,7 +35,7 @@ def execute_transforms():
     dbt_project_dir = str(current_script_path.parent.parent / "fpl_dbt")
 
     for model in model_names:
-        dbt_args = ["run", "--project-dir", dbt_project_dir, "--profiles-dir", dbt_project_dir, "--select", model]
+        dbt_args = ["--log-level", "error", "run", "--project-dir", dbt_project_dir, "--profiles-dir", dbt_project_dir, "--select", model]
         try:
             dbt_run(dbt, dbt_args)
 
