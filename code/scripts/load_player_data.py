@@ -85,8 +85,7 @@ def fetch_data(logging_context):
     
     try:
         client = storage.Client()
-        bucket = client.bucket(os.getenv("GCS_BUCKET_NAME"))
-        load_to_storage(bucket, gcs_path, player_histories)
+        load_to_storage(os.getenv("GCS_BUCKET_NAME"), gcs_path, player_histories)
     
     except Exception:
         logging.critical(
@@ -102,7 +101,7 @@ def fetch_data(logging_context):
     model_name = "raw_player_merge"
     
     try:
-        gcs_to_bq(gcs_path, bucket, target_table, write_disposition = "WRITE_APPEND")
+        gcs_to_bq(gcs_path, os.getenv("GCS_BUCKET_NAME"), target_table, write_disposition = "WRITE_APPEND")
     
     except Exception:
         logging.critical(
@@ -113,7 +112,7 @@ def fetch_data(logging_context):
         return False
     
     logging.info(f"Successfully uploaded player data to {target_table}.", extra={"json_fields":logging_context})
-    
+
     logging_context["pipeline_phase"] = "complete"
     logging.info(f"Pipeline execution complete.", extra={"json_fields":logging_context})
     return True

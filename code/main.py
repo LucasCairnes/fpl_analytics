@@ -26,7 +26,7 @@ def main():
     player_success = run_player_extraction(logging_context)
 
     if not api_success or not player_success:
-        logging.error("One ore more pipelines failed. Stopping pipeline.")
+        logging.error("One or more pipelines failed. Stopping pipeline.")
         logging.shutdown()
         sys.exit(1)
 

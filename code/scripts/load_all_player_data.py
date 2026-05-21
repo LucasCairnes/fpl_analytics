@@ -113,7 +113,7 @@ def fetch_data():
     target_id = "fpl-analytics-488811.raw_player.raw_player_stats"
 
     try:
-        gcs_to_bq(gcs_path, bucket, target_id)
+        gcs_to_bq(gcs_path, os.getenv("GCS_BUCKET_NAME"), target_id)
     
     except Exception:
         logging.critical(

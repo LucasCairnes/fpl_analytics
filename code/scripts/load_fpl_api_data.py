@@ -71,7 +71,7 @@ def fetch_data(logging_context):
 
     try:
         for path, table in zip(gcs_paths[:3], bq_tables):
-            gcs_to_bq(path[0], bucket, table)
+            gcs_to_bq(path[0], os.getenv("GCS_BUCKET_NAME"), table)
 
     except Exception:
         logging.critical(
