@@ -29,7 +29,7 @@ def execute_transforms():
     logging.info(f"Beginning dbt transforms.", extra={"json_fields":logging_context})
 
     dbt = dbtRunner(callbacks=[])
-    model_names = ["staging", "curated", "prod"]
+    model_names = ["staging_fixture", "staging_player", "curated_team", "curated_fixture", "curated_player", "fpl_prod"]
 
     current_script_path = Path(__file__).resolve()
     dbt_project_dir = str(current_script_path.parent.parent / "fpl_dbt")
