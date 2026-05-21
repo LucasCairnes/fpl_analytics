@@ -5,7 +5,7 @@ WITH player_data AS (
 ),
 
 team_data AS (
-    SELECT * FROM {{ ref('curated_team','cur_team_taxonomies') }}
+    SELECT * FROM {{ ref('cur_team_taxonomies') }}
 ),
 
 cur_player_taxonomies AS (
