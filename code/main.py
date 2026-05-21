@@ -27,6 +27,7 @@ def main():
 
     if not api_success or not player_success:
         logging.error("One ore more pipelines failed. Stopping pipeline.")
+        logging.shutdown()
         sys.exit(1)
 
     try:
@@ -38,12 +39,12 @@ def main():
             exc_info=True,
             extra={"json_fields":logging_context}
         )   
+        logging.shutdown()
         sys.exit(1)
 
     logging.info("Pipeline finished successfully.")
-    sys.exit(0)
-    
     logging.shutdown()
+    sys.exit(0)
 
 if __name__ == "__main__":
     main()

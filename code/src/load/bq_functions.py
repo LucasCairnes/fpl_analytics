@@ -10,7 +10,7 @@ def gcs_to_bq(gcs_path, bucket_name, table_id, write_disposition="WRITE_APPEND")
     gcs_uri = f"gs://{bucket_name}/{gcs_path}"
     
     job_config = bigquery.LoadJobConfig(
-        source_format=bigquery.SourceFormat.JSON,
+        source_format=bigquery.SourceFormat.NEWLINE_DELIMITED_JSON,
         autodetect=True,
         write_disposition=getattr(bigquery.WriteDisposition, write_disposition) 
     )
