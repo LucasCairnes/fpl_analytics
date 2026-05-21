@@ -11,24 +11,8 @@ from src.load.gcs_functions import load_to_storage
 from src.load.bq_functions import gcs_to_bq
 from src.transform.bq_functions import merge
 
-def initialise_logging():
-    root_logger = logging.getLogger()
-    if root_logger.hasHandlers():
-        root_logger.handlers.clear()
-
-    logging_client = google.cloud.logging.Client()
-    logging_client.setup_logging()
-
-    logging.getLogger("pandas_gbq").setLevel(logging.WARNING)
-
-def fetch_data():
-    RUN_ID = str(uuid.uuid4())
-
-    logging_context = {
-        "run_id" : RUN_ID,
-        "pipeline_phase" : "bigquery_extraction"
-    }
-
+def fetch_data(logging_context):
+    logging_context["pipeline_phase"] = "big_query_extraction"
     logging.info(f"Beginning player data pipeline.", extra={"json_fields":logging_context})
 
     try:
@@ -56,7 +40,7 @@ def fetch_data():
     if url_count == 0:
         logging_context["pipeline_phase"] = "complete"
         logging.info("No player data to fetch today. Pipeline execution complete.", extra={"json_fields":logging_context})
-        return
+        return True
     
     logging.info(f"Successfully fetched {url_count} player urls.", extra={"json_fields":logging_context})
 
@@ -69,7 +53,7 @@ def fetch_data():
     
     if len(player_histories) == 0:
         logging.critical(f"Failed to collect any player data. Stopping pipeline.", extra={"json_fields":logging_context})
-        return
+        return False
 
     elif failure_count == 0:
         logging.info(f"Successfully collected data for all players.", extra={"json_fields":logging_context})
@@ -111,7 +95,7 @@ def fetch_data():
             exc_info=True,
             extra={"json_fields":logging_context}
         )
-        return
+        return False
     
     logging.info(f"Successfully uploaded player data to GCS.", extra={"json_fields":logging_context})
 
@@ -128,7 +112,7 @@ def fetch_data():
             exc_info=True,
             extra={"json_fields":logging_context}
         )
-        return
+        return False
     
     logging.info(f"Successfully uploaded player data to {temp_id}.", extra={"json_fields":logging_context})
 
@@ -141,18 +125,16 @@ def fetch_data():
             exc_info=True,
             extra={"json_fields":logging_context}
         )
-        return
+        return False
     
     logging.info(f"Successfully merged player data into {target_table}.", extra={"json_fields":logging_context})
     logging_context["pipeline_phase"] = "complete"
     logging.info(f"Pipeline execution complete.", extra={"json_fields":logging_context})
     return True
 
-def main():
-    initialise_logging()
-    fetch_data()
-    logging.shutdown()
-    if fetch_data:
+def main(logging_context):
+    success = fetch_data(logging_context)
+    if success:
         return True
 
 if __name__ == "__main__":

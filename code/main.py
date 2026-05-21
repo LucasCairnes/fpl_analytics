@@ -1,9 +1,49 @@
+import logging, google.cloud.logging, uuid
+import sys
+
 from scripts.load_fpl_api_data import main as run_fpl_api_extraction
 from scripts.load_player_data import main as run_player_extraction
 from scripts.dbt_orchestrator import main as run_dbt_transforms
 
-api_extraction = run_fpl_api_extraction()
-player_extraction = run_player_extraction()
+def main():
+    root_logger = logging.getLogger()
+    if root_logger.hasHandlers():
+        root_logger.handlers.clear()
 
-if api_extraction or player_extraction:
-    run_dbt_transforms()
+    logging_client = google.cloud.logging.Client()
+    logging_client.setup_logging()
+
+    logging.getLogger("pandas_gbq").setLevel(logging.WARNING)
+
+    RUN_ID = str(uuid.uuid4())
+
+    logging_context = {
+        "run_id" : RUN_ID,
+        "pipeline_phase" : "initialising"
+    }
+
+    api_success = run_fpl_api_extraction(logging_context)
+    player_success = run_player_extraction(logging_context)
+
+    if not api_success or not player_success:
+        logging.error("One ore more pipelines failed. Stopping pipeline.")
+        sys.exit(1)
+
+    try:
+        run_dbt_transforms(logging_context)
+
+    except Exception:
+        logging.error(
+            "dbt transforms failed. Stopping pipeline.",
+            exc_info=True,
+            extra={"json_fields":logging_context}
+        )   
+        sys.exit(1)
+
+    logging.info("Pipeline finished successfully.")
+    sys.exit(0)
+    
+    logging.shutdown()
+
+if __name__ == "__main__":
+    main()

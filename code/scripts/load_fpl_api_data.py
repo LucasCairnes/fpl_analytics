@@ -10,24 +10,8 @@ from src.transform.utils import dig
 from src.load.gcs_functions import load_to_storage
 from src.load.bq_functions import gcs_to_bq
 
-def initialise_logging():
-    root_logger = logging.getLogger()
-    if root_logger.hasHandlers():
-        root_logger.handlers.clear()
-
-    logging_client = google.cloud.logging.Client()
-    logging_client.setup_logging()
-    
-    logging.getLogger("pandas_gbq").setLevel(logging.WARNING)
-
-def fetch_data():
-    RUN_ID = str(uuid.uuid4())
-
-    logging_context = {
-        "run_id" : RUN_ID,
-        "pipeline_phase" : "api_data_extraction"
-    }
-
+def fetch_data(logging_context):
+    logging_context["pipeline_phase"] = "api_data_extraction"
     logging.info(f"Beginning api data pipeline.", extra={"json_fields":logging_context})
 
     api_urls = ["https://fantasy.premierleague.com/api/bootstrap-static/",
@@ -55,7 +39,7 @@ def fetch_data():
             exc_info=True,
             extra={"json_fields":logging_context}
         )
-        return
+        return False
     
     if len(raw_data) != len(api_urls):
         logging.critical(
@@ -63,7 +47,7 @@ def fetch_data():
             exc_info=True,
             extra={"json_fields":logging_context}
         )
-        return 
+        return False
 
     logging.info(f"Successfully collected api data.", extra={"json_fields":logging_context})
     logging_context["pipeline_phase"] = "uploading_to_gcs"
@@ -80,7 +64,7 @@ def fetch_data():
             exc_info=True,
             extra={"json_fields":logging_context}
         )
-        return 
+        return False
     
     logging.info(f"Successfully uploaded data to gcs.", extra={"json_fields":logging_context})
     logging_context["pipeline_phase"] = "uploading_to_bq"
@@ -95,18 +79,16 @@ def fetch_data():
             exc_info=True,
             extra={"json_fields":logging_context}
         )
-        return
+        return False
     
     logging.info(f"Successfully uploaded data to BigQuery.", extra={"json_fields":logging_context})
     logging_context["pipeline_phase"] = "complete"
     logging.info(f"Pipeline execution complete.", extra={"json_fields":logging_context})
     return True
             
-def main():
-    initialise_logging()
-    fetch_data()
-    logging.shutdown()
-    if fetch_data:
+def main(logging_context):
+    success = fetch_data(logging_context)
+    if success:
         return True
 
 if __name__ == "__main__":

@@ -11,24 +11,8 @@ from src.load.gcs_functions import load_to_storage
 from src.load.bq_functions import gcs_to_bq
 from src.transform.bq_functions import merge
 
-def initialise_logging():
-    root_logger = logging.getLogger()
-    if root_logger.hasHandlers():
-        root_logger.handlers.clear()
-
-    logging_client = google.cloud.logging.Client()
-    logging_client.setup_logging()
-
-    logging.getLogger("pandas_gbq").setLevel(logging.WARNING)
-
-def fetch_data():
-    RUN_ID = str(uuid.uuid4())
-
-    logging_context = {
-        "run_id" : RUN_ID,
-        "pipeline_phase" : "bigquery_extraction"
-    }
-
+def fetch_data(logging_context):
+    logging_context["pipeline_phase"] = "dbt_transforms"
     logging.info(f"Beginning all player data pipeline.", extra={"json_fields":logging_context})
 
     try:
@@ -129,12 +113,8 @@ def fetch_data():
     logging.info(f"Pipeline execution complete.", extra={"json_fields":logging_context})
     return True
 
-def main():
-    initialise_logging()
-    fetch_data()
-    logging.shutdown()
-    if fetch_data:
-        return True
+def main(logging_context):
+    fetch_data(logging_context)
 
 if __name__ == "__main__":
     main()
