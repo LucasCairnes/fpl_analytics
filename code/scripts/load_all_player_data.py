@@ -9,7 +9,6 @@ load_dotenv()
 from src.extract.fpl_api import fetch_player_histories
 from src.load.gcs_functions import load_to_storage
 from src.load.bq_functions import gcs_to_bq
-from src.transform.bq_functions import merge
 
 def fetch_data():
     root_logger = logging.getLogger()
