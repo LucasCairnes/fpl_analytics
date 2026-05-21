@@ -1,6 +1,7 @@
 from dbt.cli.main import dbtRunner, dbtRunnerResult
 from tenacity import retry, wait_exponential, stop_after_attempt
 import logging, google.cloud.logging, uuid
+from pathlib import Path
 
 def initialise_logging():
     root_logger = logging.getLogger()
@@ -30,8 +31,11 @@ def execute_transforms():
     dbt = dbtRunner()
     model_names = ["staging", "curated", "prod"]
 
+    current_script_path = Path(__file__).resolve()
+    dbt_project_dir = str(current_script_path.parent.parent / "fpl_dbt")
+
     for model in model_names:
-        dbt_args = ["run", "--project-dir", "fpl_dbt", "--select", model]
+        dbt_args = ["run", "--project-dir", dbt_project_dir, "--select", model]
         try:
             dbt_run(dbt, dbt_args)
 

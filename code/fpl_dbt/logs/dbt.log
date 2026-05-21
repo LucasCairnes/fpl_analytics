@@ -38336,3 +38336,414 @@ SELECT * FROM source_data
 [0m10:54:30.601507 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111ffc0f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111e02210>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111fcfdd0>]}
 [0m10:54:30.601614 [debug] [MainThread]: Flushing usage events
 [0m10:54:36.520408 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m12:02:19.854354 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b870ec0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cfc79d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cfc7750>]}
+
+
+============================== 12:02:19.856749 | b63c7378-e348-4872-8bf8-b721671c4b65 ==============================
+[0m12:02:19.856749 [info ] [MainThread]: Running with dbt=1.11.6
+[0m12:02:19.856987 [debug] [MainThread]: running dbt with arguments {'write_json': 'True', 'introspect': 'True', 'log_format': 'default', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'version_check': 'True', 'fail_fast': 'False', 'partial_parse': 'True', 'profiles_dir': '/Users/sparelaptop4/.dbt', 'send_anonymous_usage_stats': 'True', 'cache_selected_only': 'False', 'empty': 'False', 'debug': 'False', 'warn_error': 'None', 'no_print': 'None', 'static_parser': 'True', 'invocation_command': 'dbt run --select staging', 'log_cache_events': 'False', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'printer_width': '80', 'log_path': '/Users/sparelaptop4/Documents/fpl_analytics/code/fpl_dbt/logs', 'use_colors': 'True', 'target_path': 'None'}
+[0m12:02:20.859441 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'b63c7378-e348-4872-8bf8-b721671c4b65', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bde9cd0>]}
+[0m12:02:20.878167 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'b63c7378-e348-4872-8bf8-b721671c4b65', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1289de030>]}
+[0m12:02:20.878413 [info ] [MainThread]: Registered adapter: bigquery=1.11.1
+[0m12:02:20.931110 [debug] [MainThread]: checksum: ec27062d18352e9cfca161c166fcc73d2201661a23a3cf3c89196a27f32cfcb8, vars: {}, profile: , target: , version: 1.11.6
+[0m12:02:20.960455 [info ] [MainThread]: Unable to do partial parsing because config vars, config profile, or config target have changed
+[0m12:02:20.960687 [debug] [MainThread]: previous checksum: ec27062d18352e9cfca161c166fcc73d2201661a23a3cf3c89196a27f32cfcb8, current checksum: 8f2c5cba03e03da9fe2b07b6fa1e0bbf4bc5cde0de1e1868f6d0bfb2b7c97062
+[0m12:02:20.960881 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': 'b63c7378-e348-4872-8bf8-b721671c4b65', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1289eaf50>]}
+[0m12:02:21.398015 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 7 unused configuration paths:
+- models.fpl_analytics.curated_fixture
+- models.fpl_analytics.staging_fixture
+- models.fpl_analytics.staging_player
+- models.fpl_analytics.fpl_prod
+- models.fpl_analytics.raw_player
+- models.fpl_analytics.curated_team
+- models.fpl_analytics.curated_player
+[0m12:02:21.401241 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'b63c7378-e348-4872-8bf8-b721671c4b65', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x128ba3200>]}
+[0m12:02:21.426176 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/sparelaptop4/Documents/fpl_analytics/code/fpl_dbt/target/manifest.json
+[0m12:02:21.427163 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/sparelaptop4/Documents/fpl_analytics/code/fpl_dbt/target/semantic_manifest.json
+[0m12:02:21.437667 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'b63c7378-e348-4872-8bf8-b721671c4b65', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x128d0de10>]}
+[0m12:02:21.437838 [info ] [MainThread]: Found 21 models, 17 sources, 540 macros
+[0m12:02:21.437963 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'b63c7378-e348-4872-8bf8-b721671c4b65', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12c6297e0>]}
+[0m12:02:21.438646 [info ] [MainThread]: 
+[0m12:02:21.438767 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m12:02:21.438884 [info ] [MainThread]: 
+[0m12:02:21.439052 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m12:02:21.440394 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_fpl-analytics-488811'
+[0m12:02:21.440534 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m12:02:23.279746 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_fpl-analytics-488811, now create_fpl-analytics-488811_dbt_dev)
+[0m12:02:23.280603 [debug] [ThreadPool]: Creating schema "database: "fpl-analytics-488811"
+schema: "dbt_dev"
+"
+[0m12:02:23.292261 [debug] [ThreadPool]: On create_fpl-analytics-488811_dbt_dev: /* {"app": "dbt", "dbt_version": "1.11.6", "profile_name": "fpl_analytics", "target_name": "dev", "connection_name": "create_fpl-analytics-488811_dbt_dev"} */
+create schema if not exists `fpl-analytics-488811`.`dbt_dev`
+  
+[0m12:02:23.292823 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m12:02:24.810173 [debug] [ThreadPool]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=fpl-analytics-488811&j=bq:europe-west2:628d28c1-e403-4b35-a35a-94952cdbe683&page=queryresults
+[0m12:02:26.525253 [debug] [ThreadPool]: SQL status: OK in 1.714 seconds
+[0m12:02:26.581029 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_fpl-analytics-488811_dbt_dev, now list_fpl-analytics-488811_dbt_dev)
+[0m12:02:26.581260 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m12:02:27.683588 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'b63c7378-e348-4872-8bf8-b721671c4b65', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12c655190>]}
+[0m12:02:27.684593 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m12:02:27.759018 [debug] [Thread-4 (]: Began running node model.fpl_analytics.stg_player_stats
+[0m12:02:27.759230 [debug] [Thread-3 (]: Began running node model.fpl_analytics.stg_player_data
+[0m12:02:27.759380 [debug] [Thread-1 (]: Began running node model.fpl_analytics.stg_fixture_data
+[0m12:02:27.759495 [debug] [Thread-2 (]: Began running node model.fpl_analytics.stg_fixtures_by_team
+[0m12:02:27.759672 [info ] [Thread-4 (]: 4 of 5 START sql table model dbt_dev.stg_player_stats .......................... [RUN]
+[0m12:02:27.759845 [info ] [Thread-3 (]: 3 of 5 START sql table model dbt_dev.stg_player_data ........................... [RUN]
+[0m12:02:27.760046 [info ] [Thread-1 (]: 1 of 5 START sql table model dbt_dev.stg_fixture_data .......................... [RUN]
+[0m12:02:27.760228 [info ] [Thread-2 (]: 2 of 5 START sql table model dbt_dev.stg_fixtures_by_team ...................... [RUN]
+[0m12:02:27.760420 [debug] [Thread-4 (]: Acquiring new bigquery connection 'model.fpl_analytics.stg_player_stats'
+[0m12:02:27.760576 [debug] [Thread-3 (]: Acquiring new bigquery connection 'model.fpl_analytics.stg_player_data'
+[0m12:02:27.760698 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_fpl-analytics-488811_dbt_dev, now model.fpl_analytics.stg_fixture_data)
+[0m12:02:27.760839 [debug] [Thread-2 (]: Acquiring new bigquery connection 'model.fpl_analytics.stg_fixtures_by_team'
+[0m12:02:27.760952 [debug] [Thread-4 (]: Began compiling node model.fpl_analytics.stg_player_stats
+[0m12:02:27.761058 [debug] [Thread-3 (]: Began compiling node model.fpl_analytics.stg_player_data
+[0m12:02:27.761161 [debug] [Thread-1 (]: Began compiling node model.fpl_analytics.stg_fixture_data
+[0m12:02:27.761258 [debug] [Thread-2 (]: Began compiling node model.fpl_analytics.stg_fixtures_by_team
+[0m12:02:27.764037 [debug] [Thread-4 (]: Writing injected SQL for node "model.fpl_analytics.stg_player_stats"
+[0m12:02:27.765310 [debug] [Thread-3 (]: Writing injected SQL for node "model.fpl_analytics.stg_player_data"
+[0m12:02:27.766316 [debug] [Thread-1 (]: Writing injected SQL for node "model.fpl_analytics.stg_fixture_data"
+[0m12:02:27.767425 [debug] [Thread-2 (]: Writing injected SQL for node "model.fpl_analytics.stg_fixtures_by_team"
+[0m12:02:27.767914 [debug] [Thread-2 (]: Began executing node model.fpl_analytics.stg_fixtures_by_team
+[0m12:02:27.768060 [debug] [Thread-3 (]: Began executing node model.fpl_analytics.stg_player_data
+[0m12:02:27.774453 [debug] [Thread-4 (]: Began executing node model.fpl_analytics.stg_player_stats
+[0m12:02:27.774579 [debug] [Thread-1 (]: Began executing node model.fpl_analytics.stg_fixture_data
+[0m12:02:27.780281 [debug] [Thread-2 (]: Writing runtime sql for node "model.fpl_analytics.stg_fixtures_by_team"
+[0m12:02:27.781159 [debug] [Thread-3 (]: Writing runtime sql for node "model.fpl_analytics.stg_player_data"
+[0m12:02:27.781864 [debug] [Thread-4 (]: Writing runtime sql for node "model.fpl_analytics.stg_player_stats"
+[0m12:02:27.783793 [debug] [Thread-1 (]: Writing runtime sql for node "model.fpl_analytics.stg_fixture_data"
+[0m12:02:27.784435 [debug] [Thread-4 (]: On model.fpl_analytics.stg_player_stats: /* {"app": "dbt", "dbt_version": "1.11.6", "profile_name": "fpl_analytics", "target_name": "dev", "node_id": "model.fpl_analytics.stg_player_stats"} */
+
+  
+    
+
+    create or replace table `fpl-analytics-488811`.`dbt_dev`.`stg_player_stats`
+      
+    
+    
+
+    
+    OPTIONS()
+    as (
+      
+
+WITH player_stats AS (
+    SELECT * FROM `fpl-analytics-488811`.`raw_player`.`raw_player_stats`
+),
+
+stg_player_stats AS (
+  SELECT
+    element AS player_id,
+    round AS gameweek,
+    COUNT(fixture) AS fixtures_played, 
+    SUM(total_points) AS total_points,
+    SUM(minutes) AS minutes,
+    SUM(goals_scored) AS goals_scored,
+    SUM(assists) AS assists,
+    SUM(clean_sheets) AS clean_sheets,
+    SUM(goals_conceded) AS goals_conceded,
+    SUM(own_goals) AS own_goals,
+    SUM(penalties_missed) AS penalties_missed,
+    SUM(penalties_saved) AS penalties_saved,
+    SUM(yellow_cards) AS yellow_cards,
+    SUM(red_cards) AS red_cards,
+    SUM(saves) AS saves,
+    SUM(bonus) AS bonus,
+    SUM(bps) AS bps,
+    SUM(influence) AS influence,
+    SUM(creativity) AS creativity,
+    SUM(threat) AS threat,
+    SUM(ict_index) AS ict_index,
+    SUM(expected_goals) AS expected_goals,
+    SUM(expected_assists) AS expected_assists,
+    SUM(expected_goals_conceded) AS expected_goals_conceded,
+    SUM(expected_goal_involvements) AS expected_goal_involvements
+
+  FROM player_stats
+  GROUP BY
+    player_id,
+    gameweek
+)
+
+SELECT * FROM stg_player_stats
+    );
+  
+[0m12:02:27.784744 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m12:02:27.785007 [debug] [Thread-2 (]: On model.fpl_analytics.stg_fixtures_by_team: /* {"app": "dbt", "dbt_version": "1.11.6", "profile_name": "fpl_analytics", "target_name": "dev", "node_id": "model.fpl_analytics.stg_fixtures_by_team"} */
+
+  
+    
+
+    create or replace table `fpl-analytics-488811`.`dbt_dev`.`stg_fixtures_by_team`
+      
+    
+    
+
+    
+    OPTIONS()
+    as (
+      
+
+WITH fixture_data AS (
+    SELECT * FROM `fpl-analytics-488811`.`raw_fixture`.`raw_fixture_data`
+),
+
+stg_fixtures_by_team AS (
+  SELECT 
+    team_h AS team_id, 
+    team_a AS opponent_id,
+    team_h_difficulty AS match_difficulty,
+    CAST(event AS int) AS gameweek, 
+    id AS fixture_id,
+    'H' AS venue
+  FROM fixture_data
+  WHERE finished = FALSE
+  
+  UNION ALL
+  
+  SELECT 
+    team_a AS team_id, 
+    team_h AS opponent_id, 
+    team_a_difficulty AS match_difficulty,
+    CAST(event AS int) AS gameweek, 
+    id AS fixture_id,
+    'A' AS venue
+  FROM fixture_data
+  WHERE finished = FALSE
+)
+
+SELECT * FROM stg_fixtures_by_team
+    );
+  
+[0m12:02:27.785186 [debug] [Thread-3 (]: On model.fpl_analytics.stg_player_data: /* {"app": "dbt", "dbt_version": "1.11.6", "profile_name": "fpl_analytics", "target_name": "dev", "node_id": "model.fpl_analytics.stg_player_data"} */
+
+  
+    
+
+    create or replace table `fpl-analytics-488811`.`dbt_dev`.`stg_player_data`
+      
+    
+    
+
+    
+    OPTIONS()
+    as (
+      
+
+WITH player_data AS (
+    SELECT * FROM `fpl-analytics-488811`.`raw_player`.`raw_player_data`
+),
+
+stg_player_data AS (
+    SELECT
+        id AS player_id,
+        code AS pl_id,
+        element_type,
+        first_name,
+        form,
+        news,
+        points_per_game,
+        second_name,
+        status,
+        team AS team_id,
+        total_points,
+        web_name,
+        known_name,
+        minutes,
+        goals_scored,
+        assists,
+        clean_sheets,
+        goals_conceded,
+        own_goals,
+        penalties_saved,
+        penalties_missed,
+        yellow_cards,
+        red_cards,
+        saves,
+        bonus,
+        bps,
+        influence,
+        creativity,
+        threat,
+        ict_index,
+        clearances_blocks_interceptions,
+        recoveries,
+        tackles,
+        defensive_contribution,
+        starts,
+        expected_goals,
+        expected_assists,
+        expected_goal_involvements,
+        expected_goals_conceded,
+        corners_and_indirect_freekicks_order,
+        corners_and_indirect_freekicks_text,
+        direct_freekicks_order,
+        direct_freekicks_text,
+        penalties_order,
+        penalties_text,
+        influence_rank,
+        influence_rank_type,
+        creativity_rank,
+        creativity_rank_type,
+        threat_rank,
+        threat_rank_type,
+        ict_index_rank,
+        ict_index_rank_type,
+        expected_goals_per_90,
+        saves_per_90,
+        expected_assists_per_90,
+        expected_goal_involvements_per_90,
+        expected_goals_conceded_per_90,
+        goals_conceded_per_90,
+        form_rank,
+        form_rank_type,
+        points_per_game_rank,
+        points_per_game_rank_type,
+        starts_per_90,
+        clean_sheets_per_90,
+        defensive_contribution_per_90
+    FROM player_data
+)
+
+SELECT * FROM stg_player_data
+    );
+  
+[0m12:02:27.785381 [debug] [Thread-1 (]: On model.fpl_analytics.stg_fixture_data: /* {"app": "dbt", "dbt_version": "1.11.6", "profile_name": "fpl_analytics", "target_name": "dev", "node_id": "model.fpl_analytics.stg_fixture_data"} */
+
+  
+    
+
+    create or replace table `fpl-analytics-488811`.`dbt_dev`.`stg_fixture_data`
+      
+    
+    
+
+    
+    OPTIONS()
+    as (
+      
+
+WITH fixture_data AS (
+    SELECT * FROM `fpl-analytics-488811`.`raw_fixture`.`raw_fixture_data`
+),
+
+stg_fixture_data AS (
+    SELECT
+        id AS fixture_id,
+        CAST(event AS int) AS gameweek,
+        CAST(kickoff_time AS date) AS date,
+        team_h,
+        team_a,
+        CAST(team_h_score AS int) AS team_h_score,
+        CAST(team_a_score AS int) AS team_a_score,
+        team_h_difficulty,
+        team_a_difficulty,
+        started,
+        finished
+    FROM fixture_data
+)
+
+SELECT * FROM stg_fixture_data
+    );
+  
+[0m12:02:27.785565 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m12:02:27.826447 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m12:02:27.828539 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m12:02:29.186212 [debug] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=fpl-analytics-488811&j=bq:europe-west2:5fe3f1d0-3df6-4d53-bb1d-a5abf20e7498&page=queryresults
+[0m12:02:29.233735 [debug] [Thread-1 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=fpl-analytics-488811&j=bq:europe-west2:f512a575-ff9d-4095-8bbe-2ef3a905ef34&page=queryresults
+[0m12:02:30.033311 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=fpl-analytics-488811&j=bq:europe-west2:eb3b8e2e-a8c2-401f-bc43-d96e3b674d7c&page=queryresults
+[0m12:02:30.119690 [debug] [Thread-4 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=fpl-analytics-488811&j=bq:europe-west2:e5fb1480-f5cf-450b-b5ec-8032583661b9&page=queryresults
+[0m12:02:31.165983 [debug] [Thread-1 (]: SQL status: OK in 1.931 seconds
+[0m12:02:31.558607 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b63c7378-e348-4872-8bf8-b721671c4b65', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12c619020>]}
+[0m12:02:31.558951 [info ] [Thread-1 (]: 1 of 5 OK created sql table model dbt_dev.stg_fixture_data ..................... [[32mCREATE TABLE (380.0 rows, 27.3 KiB processed)[0m in 3.80s]
+[0m12:02:31.559236 [debug] [Thread-1 (]: Finished running node model.fpl_analytics.stg_fixture_data
+[0m12:02:31.559427 [debug] [Thread-1 (]: Began running node model.fpl_analytics.stg_selection_info
+[0m12:02:31.559634 [info ] [Thread-1 (]: 5 of 5 START sql table model dbt_dev.stg_selection_info ........................ [RUN]
+[0m12:02:31.559834 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.fpl_analytics.stg_fixture_data, now model.fpl_analytics.stg_selection_info)
+[0m12:02:31.559961 [debug] [Thread-1 (]: Began compiling node model.fpl_analytics.stg_selection_info
+[0m12:02:31.561018 [debug] [Thread-1 (]: Writing injected SQL for node "model.fpl_analytics.stg_selection_info"
+[0m12:02:31.561354 [debug] [Thread-1 (]: Began executing node model.fpl_analytics.stg_selection_info
+[0m12:02:31.562078 [debug] [Thread-1 (]: Writing runtime sql for node "model.fpl_analytics.stg_selection_info"
+[0m12:02:31.562359 [debug] [Thread-1 (]: On model.fpl_analytics.stg_selection_info: /* {"app": "dbt", "dbt_version": "1.11.6", "profile_name": "fpl_analytics", "target_name": "dev", "node_id": "model.fpl_analytics.stg_selection_info"} */
+
+  
+    
+
+    create or replace table `fpl-analytics-488811`.`dbt_dev`.`stg_selection_info`
+      
+    
+    
+
+    
+    OPTIONS()
+    as (
+      
+
+WITH player_data AS (
+    SELECT * FROM `fpl-analytics-488811`.`raw_player`.`raw_player_data`
+),
+
+stg_selection_info AS (
+    SELECT
+        id AS player_id,
+        can_select,
+        CAST(now_cost / 10 AS FLOAT64) AS transfer_value,
+        selected_by_percent,
+        cost_change_event,
+        cost_change_event_fall,
+        cost_change_start,
+        cost_change_start_fall,
+        price_change_percent,
+        transfers_in,
+        transfers_in_event,
+        transfers_out,
+        transfers_out_event,
+        status,
+        value_season,
+        selected_rank,
+        selected_rank_type,
+    FROM player_data
+)
+
+SELECT * FROM stg_selection_info
+    );
+  
+[0m12:02:31.562690 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m12:02:32.206963 [debug] [Thread-2 (]: SQL status: OK in 2.173 seconds
+[0m12:02:32.466056 [debug] [Thread-4 (]: SQL status: OK in 2.345 seconds
+[0m12:02:32.605959 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b63c7378-e348-4872-8bf8-b721671c4b65', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12c5fbc50>]}
+[0m12:02:32.606759 [info ] [Thread-2 (]: 2 of 5 OK created sql table model dbt_dev.stg_fixtures_by_team ................. [[32mCREATE TABLE (20.0 rows, 18.2 KiB processed)[0m in 4.84s]
+[0m12:02:32.607241 [debug] [Thread-2 (]: Finished running node model.fpl_analytics.stg_fixtures_by_team
+[0m12:02:32.826702 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b63c7378-e348-4872-8bf8-b721671c4b65', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12da4ab50>]}
+[0m12:02:32.827722 [info ] [Thread-4 (]: 4 of 5 OK created sql table model dbt_dev.stg_player_stats ..................... [[32mCREATE TABLE (28.5k rows, 5.5 MiB processed)[0m in 5.07s]
+[0m12:02:32.828284 [debug] [Thread-4 (]: Finished running node model.fpl_analytics.stg_player_stats
+[0m12:02:32.885394 [debug] [Thread-1 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=fpl-analytics-488811&j=bq:europe-west2:be43b61c-ccc2-45a2-b38a-2d0f630eabcd&page=queryresults
+[0m12:02:32.895620 [debug] [Thread-3 (]: SQL status: OK in 3.707 seconds
+[0m12:02:33.292387 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b63c7378-e348-4872-8bf8-b721671c4b65', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12db86190>]}
+[0m12:02:33.293424 [info ] [Thread-3 (]: 3 of 5 OK created sql table model dbt_dev.stg_player_data ...................... [[32mCREATE TABLE (840.0 rows, 402.8 KiB processed)[0m in 5.53s]
+[0m12:02:33.294043 [debug] [Thread-3 (]: Finished running node model.fpl_analytics.stg_player_data
+[0m12:02:34.857069 [debug] [Thread-1 (]: SQL status: OK in 1.971 seconds
+[0m12:02:35.251793 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b63c7378-e348-4872-8bf8-b721671c4b65', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12dae7dd0>]}
+[0m12:02:35.252910 [info ] [Thread-1 (]: 5 of 5 OK created sql table model dbt_dev.stg_selection_info ................... [[32mCREATE TABLE (840.0 rows, 101.7 KiB processed)[0m in 3.69s]
+[0m12:02:35.253506 [debug] [Thread-1 (]: Finished running node model.fpl_analytics.stg_selection_info
+[0m12:02:35.254956 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m12:02:35.324521 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m12:02:35.324739 [debug] [MainThread]: Connection 'model.fpl_analytics.stg_selection_info' was properly closed.
+[0m12:02:35.324847 [debug] [MainThread]: Connection 'model.fpl_analytics.stg_player_stats' was properly closed.
+[0m12:02:35.324937 [debug] [MainThread]: Connection 'model.fpl_analytics.stg_player_data' was properly closed.
+[0m12:02:35.325021 [debug] [MainThread]: Connection 'model.fpl_analytics.stg_fixtures_by_team' was properly closed.
+[0m12:02:35.325155 [info ] [MainThread]: 
+[0m12:02:35.325278 [info ] [MainThread]: Finished running 5 table models in 0 hours 0 minutes and 13.89 seconds (13.89s).
+[0m12:02:35.325711 [debug] [MainThread]: Command end result
+[0m12:02:35.336943 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/sparelaptop4/Documents/fpl_analytics/code/fpl_dbt/target/manifest.json
+[0m12:02:35.338238 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/sparelaptop4/Documents/fpl_analytics/code/fpl_dbt/target/semantic_manifest.json
+[0m12:02:35.341604 [debug] [MainThread]: Wrote artifact RunExecutionResult to /Users/sparelaptop4/Documents/fpl_analytics/code/fpl_dbt/target/run_results.json
+[0m12:02:35.341843 [info ] [MainThread]: 
+[0m12:02:35.342074 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m12:02:35.342263 [info ] [MainThread]: 
+[0m12:02:35.342417 [info ] [MainThread]: Done. PASS=5 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=5
+[0m12:02:35.344932 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 15.525412, "process_in_blocks": "0", "process_kernel_time": 0.421542, "process_mem_max_rss": "262881280", "process_out_blocks": "0", "process_user_time": 2.384979}
+[0m12:02:35.345122 [debug] [MainThread]: Command `dbt run` succeeded at 12:02:35.345074 after 15.53 seconds
+[0m12:02:35.345310 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109681550>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12dbd34d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12dbd3e30>]}
+[0m12:02:35.345460 [debug] [MainThread]: Flushing usage events
+[0m12:02:36.610509 [debug] [MainThread]: An error was encountered while trying to flush usage events
