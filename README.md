@@ -22,7 +22,7 @@ A Fantasy Premier League data analysis project built with Python and dbt.
     - Edit fpl_dbt/profiles.yml
 
 3. Configure GCP credentials
-    - export GOOGLE_APPLICATION_CREDENTIALS="/path/to/key.json"
+    - GOOGLE_APPLICATION_CREDENTIALS="/path/to/key.json"
 
 4. To run the full pipeline
     - `cd code`
