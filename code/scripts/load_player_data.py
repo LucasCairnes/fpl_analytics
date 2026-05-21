@@ -9,7 +9,6 @@ load_dotenv()
 from src.extract.fpl_api import fetch_player_histories
 from src.load.gcs_functions import load_to_storage
 from src.load.bq_functions import gcs_to_bq
-from src.transform.bq_functions import merge
 
 def fetch_data(logging_context):
     logging_context["pipeline_phase"] = "big_query_extraction"
@@ -100,34 +99,21 @@ def fetch_data(logging_context):
     logging.info(f"Successfully uploaded player data to GCS.", extra={"json_fields":logging_context})
 
     target_table = "raw_player_stats"
-    temp_id = "fpl-analytics-488811.temporary.temp_raw_player_stats"
     model_name = "raw_player_merge"
     
     try:
-        gcs_to_bq(gcs_path, bucket, temp_id)
+        gcs_to_bq(gcs_path, bucket, target_table, write_disposition = "WRITE_APPEND")
     
     except Exception:
         logging.critical(
-            f"Couldn't upload player data to {temp_id}. Stopping pipeline.",
+            f"Couldn't upload player data to {target_table}. Stopping pipeline.",
             exc_info=True,
             extra={"json_fields":logging_context}
         )
         return False
     
-    logging.info(f"Successfully uploaded player data to {temp_id}.", extra={"json_fields":logging_context})
-
-    try:
-        merge(temp_id, target_table, model_name)
+    logging.info(f"Successfully uploaded player data to {target_table}.", extra={"json_fields":logging_context})
     
-    except Exception:
-        logging.critical(
-            f"Couldn't merge player data into {target_table}. Stopping pipeline.",
-            exc_info=True,
-            extra={"json_fields":logging_context}
-        )
-        return False
-    
-    logging.info(f"Successfully merged player data into {target_table}.", extra={"json_fields":logging_context})
     logging_context["pipeline_phase"] = "complete"
     logging.info(f"Pipeline execution complete.", extra={"json_fields":logging_context})
     return True
