@@ -30,15 +30,9 @@ def main():
         logging.shutdown()
         sys.exit(1)
 
-    try:
-        run_dbt_transforms(logging_context)
+    dbt_success = run_dbt_transforms(logging_context)
 
-    except Exception:
-        logging.error(
-            "dbt transforms failed. Stopping pipeline.",
-            exc_info=True,
-            extra={"json_fields":logging_context}
-        )   
+    if not dbt_success:
         logging.shutdown()
         sys.exit(1)
 

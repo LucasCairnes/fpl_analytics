@@ -25,15 +25,16 @@ def execute_transforms(logging_context):
         dbt_run(dbt, dbt_args)
 
     except Exception:
-        logging.critical(
+        logging.error(
         f"Couldn't complete dbt transforms. Stopping pipeline.",
         exc_info=True,
         extra={"json_fields":logging_context}
     )
-        return
+        return False
     
     logging_context["pipeline_phase"] = "complete"
     logging.info(f"Dbt transforms complete.", extra={"json_fields":logging_context})
+    return True
 
 def main(logging_context):
     execute_transforms(logging_context)
