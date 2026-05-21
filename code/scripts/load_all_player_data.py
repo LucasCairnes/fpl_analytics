@@ -29,13 +29,13 @@ def fetch_data():
         "pipeline_phase" : "bigquery_extraction"
     }
 
-    logging.info(f"Beginning player data pipeline.", extra={"json_fields":logging_context})
+    logging.info(f"Beginning all player data pipeline.", extra={"json_fields":logging_context})
 
     try:
         bq_client = bigquery.Client()
 
         base_path = os.path.dirname(os.path.dirname(__file__))
-        sql_file = os.path.join(base_path, 'src', 'queries', 'yesterday_player_ids.sql')
+        sql_file = os.path.join(base_path, 'src', 'queries', 'all_player_ids.sql')
 
         with open(sql_file, 'r') as file:
             query = file.read()
@@ -51,11 +51,6 @@ def fetch_data():
             exc_info=True,
             extra={"json_fields":logging_context}
         )
-        return
-
-    if url_count == 0:
-        logging_context["pipeline_phase"] = "complete"
-        logging.info("No player data to fetch today. Pipeline execution complete.", extra={"json_fields":logging_context})
         return
     
     logging.info(f"Successfully fetched {url_count} player urls.", extra={"json_fields":logging_context})
@@ -115,35 +110,21 @@ def fetch_data():
     
     logging.info(f"Successfully uploaded player data to GCS.", extra={"json_fields":logging_context})
 
-    target_table = "raw_player_stats"
-    temp_id = "fpl-analytics-488811.temporary.temp_raw_player_stats"
-    model_name = "raw_player_merge"
-    
-    try:
-        gcs_to_bq(gcs_path, bucket, temp_id)
-    
-    except Exception:
-        logging.critical(
-            f"Couldn't upload player data to {temp_id}. Stopping pipeline.",
-            exc_info=True,
-            extra={"json_fields":logging_context}
-        )
-        return
-    
-    logging.info(f"Successfully uploaded player data to {temp_id}.", extra={"json_fields":logging_context})
+    target_id = "fpl-analytics-488811.raw_player.raw_player_stats"
 
     try:
-        merge(temp_id, target_table, model_name)
+        gcs_to_bq(gcs_path, bucket, target_id)
     
     except Exception:
         logging.critical(
-            f"Couldn't merge player data into {target_table}. Stopping pipeline.",
+            f"Couldn't upload player data to {target_id}. Stopping pipeline.",
             exc_info=True,
             extra={"json_fields":logging_context}
         )
         return
     
-    logging.info(f"Successfully merged player data into {target_table}.", extra={"json_fields":logging_context})
+    logging.info(f"Successfully uploaded player data to {target_id}.", extra={"json_fields":logging_context})
+    
     logging_context["pipeline_phase"] = "complete"
     logging.info(f"Pipeline execution complete.", extra={"json_fields":logging_context})
     return True
