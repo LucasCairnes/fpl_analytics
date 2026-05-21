@@ -97,21 +97,21 @@ def fetch_data(logging_context):
     
     logging.info(f"Successfully uploaded player data to GCS.", extra={"json_fields":logging_context})
 
-    target_table = "raw_player_stats"
+    target_id = "fpl-analytics-488811.raw_player.raw_player_stats"
     model_name = "raw_player_merge"
     
     try:
-        gcs_to_bq(gcs_path, os.getenv("GCS_BUCKET_NAME"), target_table, write_disposition = "WRITE_APPEND")
+        gcs_to_bq(gcs_path, os.getenv("GCS_BUCKET_NAME"), target_id, write_disposition = "WRITE_APPEND")
     
     except Exception:
         logging.critical(
-            f"Couldn't upload player data to {target_table}. Stopping pipeline.",
+            f"Couldn't upload player data to {target_id}. Stopping pipeline.",
             exc_info=True,
             extra={"json_fields":logging_context}
         )
         return False
     
-    logging.info(f"Successfully uploaded player data to {target_table}.", extra={"json_fields":logging_context})
+    logging.info(f"Successfully uploaded player data to {target_id}.", extra={"json_fields":logging_context})
 
     logging_context["pipeline_phase"] = "complete"
     logging.info(f"Pipeline execution complete.", extra={"json_fields":logging_context})

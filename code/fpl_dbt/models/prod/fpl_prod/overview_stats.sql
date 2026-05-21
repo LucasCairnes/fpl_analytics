@@ -1,11 +1,11 @@
 {{ config(materialized='table') }}
 
 WITH player_data AS (
-    SELECT * FROM {{ ref('curated_player', 'cur_player_taxonomies')}}
+    SELECT * FROM {{ ref('cur_player_taxonomies')}}
 ),
 
 player_stats AS (
-    SELECT * FROM {{ ref('curated_player', 'cur_total_stats') }} 
+    SELECT * FROM {{ ref('cur_total_stats') }} 
 ),
 
 team_info AS (
@@ -13,7 +13,7 @@ team_info AS (
 ),
 
 selection_info AS (
-    SELECT * FROM {{ ref('curated_player', 'cur_selection_info') }} 
+    SELECT * FROM {{ ref('cur_selection_info') }} 
 ),
 
 overview_stats AS (

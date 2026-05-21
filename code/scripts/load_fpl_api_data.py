@@ -27,7 +27,6 @@ def fetch_data(logging_context):
     bq_tables = ["fpl-analytics-488811.raw_player.raw_player_data",
                 "fpl-analytics-488811.raw_team.raw_team_data",
                 "fpl-analytics-488811.raw_fixture.raw_fixture_data"]
-    
 
     try:
         raw_responses = [fetch_fpl_data(url) for url in api_urls]

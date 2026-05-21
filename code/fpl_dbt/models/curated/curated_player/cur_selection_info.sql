@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 
 WITH player_data AS (
-    SELECT * FROM {{ ref('stg_player','stg_selection_info') }}
+    SELECT * FROM {{ ref('stg_selection_info') }}
 ),
 
 cur_selection_info AS (
