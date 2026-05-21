@@ -29,23 +29,22 @@ def execute_transforms():
     logging.info(f"Beginning dbt transforms.", extra={"json_fields":logging_context})
 
     dbt = dbtRunner(callbacks=[])
-    model_names = ["staging_fixture", "staging_player", "curated_team", "curated_fixture", "curated_player", "fpl_prod"]
 
     current_script_path = Path(__file__).resolve()
     dbt_project_dir = str(current_script_path.parent.parent / "fpl_dbt")
 
-    for model in model_names:
-        dbt_args = ["--log-level", "error", "run", "--project-dir", dbt_project_dir, "--profiles-dir", dbt_project_dir, "--select", model]
-        try:
-            dbt_run(dbt, dbt_args)
+    dbt_args = ["--log-level", "error", "run", "--project-dir", dbt_project_dir, "--profiles-dir", dbt_project_dir]
+    
+    try:
+        dbt_run(dbt, dbt_args)
 
-        except Exception:
-            logging.critical(
-            f"Couldn't complete transform for {model} data. Stopping pipeline.",
-            exc_info=True,
-            extra={"json_fields":logging_context}
-        )
-            return
+    except Exception:
+        logging.critical(
+        f"Couldn't complete dbt transforms. Stopping pipeline.",
+        exc_info=True,
+        extra={"json_fields":logging_context}
+    )
+        return
     
     logging_context["pipeline_phase"] = "complete"
     logging.info(f"Dbt transforms complete.", extra={"json_fields":logging_context})

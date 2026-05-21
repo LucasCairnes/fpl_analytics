@@ -1,19 +1,19 @@
 {{ config(materialized='table') }}
 
 WITH player_data AS (
-    SELECT * FROM {{ source('curated_player', 'cur_player_taxonomies')}}
+    SELECT * FROM {{ ref('curated_player', 'cur_player_taxonomies')}}
 ),
 
 rolling_stats AS (
-    SELECT * FROM {{ source('curated_player', 'cur_player_ten_gw_stats')}}
+    SELECT * FROM {{ ref('curated_player', 'cur_player_ten_gw_stats')}}
 ),
 
 transfer_stats AS (
-    SELECT * FROM {{ source('curated_player', 'cur_selection_info')}}
+    SELECT * FROM {{ ref('curated_player', 'cur_selection_info')}}
 ),
 
 team_info AS (
-    SELECT * FROM {{ source('curated_team', 'cur_team_taxonomies') }} 
+    SELECT * FROM {{ ref('curated_team', 'cur_team_taxonomies') }} 
 ),
 
 points_per_value AS (

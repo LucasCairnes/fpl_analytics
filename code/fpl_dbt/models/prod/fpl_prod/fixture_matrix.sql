@@ -1,11 +1,11 @@
 {{ config(materialized='table') }}
 
 WITH fixture_data AS (
-    SELECT * FROM {{ source('curated_fixture', 'cur_next_five_fixtures')}}
+    SELECT * FROM {{ ref('curated_fixture', 'cur_next_five_fixtures')}}
 ),
 
 team_info AS (
-    SELECT * FROM {{ source('curated_team', 'cur_team_taxonomies') }} 
+    SELECT * FROM {{ ref('curated_team', 'cur_team_taxonomies') }} 
 ),
 
 fixture_matrix AS (
