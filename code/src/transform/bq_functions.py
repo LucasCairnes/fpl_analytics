@@ -14,7 +14,7 @@ def merge(temp_table, target_table, model_name):
     current_script_path = Path(__file__).resolve()
     dbt_project_dir = str(current_script_path.parent.parent / "fpl_dbt")
 
-    dbt = dbtRunner()
+    dbt = dbtRunner(callbacks=[])
     dbt_args = ["run", "--project-dir", dbt_project_dir, "--profiles-dir", dbt_project_dir, "--select", model_name, "--vars", json.dumps(dbt_vars)]
 
     res: dbtRunnerResult = dbt.invoke(dbt_args)

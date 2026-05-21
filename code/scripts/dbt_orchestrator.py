@@ -28,7 +28,7 @@ def execute_transforms():
 
     logging.info(f"Beginning dbt transforms.", extra={"json_fields":logging_context})
 
-    dbt = dbtRunner()
+    dbt = dbtRunner(callbacks=[])
     model_names = ["staging", "curated", "prod"]
 
     current_script_path = Path(__file__).resolve()
