@@ -37,8 +37,9 @@ def execute_transforms(logging_context):
     return True
 
 def main(logging_context):
-    execute_transforms(logging_context)
-    logging.shutdown()
+    transforms_success = execute_transforms(logging_context)
+    if transforms_success:
+        return True
 
 if __name__ == "__main__":
     main()
