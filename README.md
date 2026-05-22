@@ -10,7 +10,7 @@ This pipeline extracts player, team and fixture data daily from the Fantasy Prem
 ## Key Engineering Features
 * **Asynchronous Ingestion:** Utilised `asyncio` and `aiohttp` to asynchronously fetch player data, reducing data collection time while safeguarding against API rate limits.
 * **Robust Error Handling:** Used `Tenacity` to protect against api connection errors with retry logic. Created a Dead Letter Queue to route failed data requests to a `BigQuery` table without halting the main pipeline. Implemented robust and informative Google Cloud logging.
-* **Automation & ELT Architecture:** The pipeline is containerised with Docker and deployed serverlessly, enabling automatic data collection. Once the data lands in `Google Cloud Storage`, dbt orchestrates a 3-tier data model (raw, staging, curated) in `BigQuery` with the help of custom `Jinja` macros.
+* **Automation & ELT Architecture:** The pipeline is containerised with `Docker` and deployed serverlessly, enabling automatic data collection. Once the data lands in `Google Cloud Storage`, dbt orchestrates a 3-tier data model (raw, staging, curated) in `BigQuery` with the help of custom `Jinja` macros.
 
 ---
 
