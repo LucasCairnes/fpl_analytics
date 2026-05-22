@@ -1,16 +1,16 @@
 # ⚽ FPL Analytics:
 
-A Fantasy Premier League ELT pipeline built with Python, dbt, and Google Cloud Platform. 
+A Fantasy Premier League ELT pipeline built with `Python`, `dbt`, and `Google Cloud Platform`. 
 
 **[View the Looker Studio Dashboard Here](https://datastudio.google.com/u/0/reporting/e2ae6fe0-ee44-4414-9cac-730268780c6e/page/quJtF)**
 
 ## Project Overview
-This pipeline extracts player, team and fixture data daily from the Fantasy Premier League API with Google Cloud Run. This data is then transformed with dbt, compiling roughly 300,000 data points into a dynamic Looker Studio dashboard that tracks player form, expected goals, fixture difficulty, and more.
+This pipeline extracts player, team and fixture data daily from the Fantasy Premier League API with `Google Cloud Run`. This data is then transformed with `dbt`, compiling roughly 300,000 data points into a dynamic `Looker Studio` dashboard that tracks player form, expected goals, fixture difficulty, and more.
 
 ## Key Engineering Features
 * **Asynchronous Ingestion:** Utilised `asyncio` and `aiohttp` to asynchronously fetch player data, reducing data collection time while safeguarding against API rate limits.
-* **Robust Error Handling:** Used `Tenacity` to protect against api connection errors with retry logic. Created a Dead Letter Queue to route failed data requests to a BigQuery table without halting the main pipeline. Implemented robust and informative Google Cloud logging.
-* **Automation & ELT Architecture:** The pipeline is containerised with Docker and deployed serverlessly, enabling automatic data collection. Once the data lands in Google Cloud Storage, dbt orchestrates a 3-tier data model (raw, staging, curated) in BigQuery with the help of custom Jinja macros.
+* **Robust Error Handling:** Used `Tenacity` to protect against api connection errors with retry logic. Created a Dead Letter Queue to route failed data requests to a `BigQuery` table without halting the main pipeline. Implemented robust and informative Google Cloud logging.
+* **Automation & ELT Architecture:** The pipeline is containerised with Docker and deployed serverlessly, enabling automatic data collection. Once the data lands in `Google Cloud Storage`, dbt orchestrates a 3-tier data model (raw, staging, curated) in `BigQuery` with the help of custom `Jinja` macros.
 
 ---
 
@@ -18,7 +18,7 @@ This pipeline extracts player, team and fixture data daily from the Fantasy Prem
 * `code/main.py` — The central orchestrator for the pipeline.
 * `code/scripts/` — Contains data extraction pipelines and the dbt runner.
 * `code/src/` — Contains the modular, custom ELT functions.
-* `code/fpl_dbt/` — The dbt project containing all SQL models and custom macros.
+* `code/fpl_dbt/` — The dbt project containing all custom models and macros.
 
 ---
 
