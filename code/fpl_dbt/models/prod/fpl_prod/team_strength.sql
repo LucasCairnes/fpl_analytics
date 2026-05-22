@@ -5,6 +5,7 @@ WITH team_stats AS (
 ),
 
 team_strength_profiler AS(
+    SELECT
     team_id,
     team_name,
     short_name,

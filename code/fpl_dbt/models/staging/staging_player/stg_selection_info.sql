@@ -22,7 +22,7 @@ stg_selection_info AS (
         status,
         value_season,
         selected_rank,
-        selected_rank_type,
+        selected_rank_type
     FROM player_data
 )
 

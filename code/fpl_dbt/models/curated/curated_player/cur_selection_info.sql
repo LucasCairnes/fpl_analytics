@@ -18,7 +18,7 @@ cur_selection_info AS (
             WHEN status = "u" THEN "Unavailable"
             WHEN status = "n" THEN "Not Available"
             ELSE "Unknown"
-        END AS status,
+        END AS status
     FROM player_data
 )
 
