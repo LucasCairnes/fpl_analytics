@@ -24,7 +24,7 @@ This pipeline extracts player, team and fixture data daily from the Fantasy Prem
 
 ## Requirements
 * Python 3.13+
-* `dbt-bigquery`
+* dbt-bigquery
 * An active Google Cloud Project
 
 ---
