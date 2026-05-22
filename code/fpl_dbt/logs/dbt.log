@@ -38747,3 +38747,59 @@ SELECT * FROM stg_selection_info
 [0m12:02:35.345310 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109681550>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12dbd34d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12dbd3e30>]}
 [0m12:02:35.345460 [debug] [MainThread]: Flushing usage events
 [0m12:02:36.610509 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m11:16:07.359799 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x103e9cec0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104e039d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104e03750>]}
+
+
+============================== 11:16:07.362281 | 5558743d-098b-4930-b208-603beab1c417 ==============================
+[0m11:16:07.362281 [info ] [MainThread]: Running with dbt=1.11.6
+[0m11:16:07.362533 [debug] [MainThread]: running dbt with arguments {'fail_fast': 'False', 'introspect': 'True', 'quiet': 'False', 'indirect_selection': 'eager', 'debug': 'False', 'profiles_dir': '/Users/sparelaptop4/Documents/fpl_analytics/code/fpl_dbt', 'version_check': 'True', 'printer_width': '80', 'log_format': 'default', 'log_cache_events': 'False', 'cache_selected_only': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'write_json': 'True', 'static_parser': 'True', 'use_experimental_parser': 'False', 'partial_parse': 'True', 'no_print': 'None', 'target_path': 'None', 'invocation_command': 'dbt run --select player_form', 'empty': 'False', 'warn_error': 'None', 'send_anonymous_usage_stats': 'True', 'use_colors': 'True', 'log_path': '/Users/sparelaptop4/Documents/fpl_analytics/code/fpl_dbt/logs'}
+[0m11:16:07.364615 [error] [MainThread]: Encountered an error:
+Parsing Error
+  Env var required but not provided: 'PROJECT_ID'
+[0m11:16:07.366607 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.048602793, "process_in_blocks": "0", "process_kernel_time": 0.121492, "process_mem_max_rss": "113229824", "process_out_blocks": "0", "process_user_time": 0.455807}
+[0m11:16:07.366783 [debug] [MainThread]: Command `dbt run` failed at 11:16:07.366749 after 0.05 seconds
+[0m11:16:07.366895 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104ea0770>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104e3a7b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104e90e20>]}
+[0m11:16:07.367003 [debug] [MainThread]: Flushing usage events
+[0m11:16:08.362814 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m11:17:19.401072 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106a70ec0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1181c79d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1181c7750>]}
+
+
+============================== 11:17:19.403407 | 799b28b5-b177-4357-abde-37f57b1d2a7b ==============================
+[0m11:17:19.403407 [info ] [MainThread]: Running with dbt=1.11.6
+[0m11:17:19.403686 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'send_anonymous_usage_stats': 'True', 'target_path': 'None', 'invocation_command': 'dbt run --select player_form', 'write_json': 'True', 'static_parser': 'True', 'fail_fast': 'False', 'debug': 'False', 'printer_width': '80', 'use_experimental_parser': 'False', 'empty': 'False', 'introspect': 'True', 'partial_parse': 'True', 'quiet': 'False', 'log_path': '/Users/sparelaptop4/Documents/fpl_analytics/code/fpl_dbt/logs', 'cache_selected_only': 'False', 'no_print': 'None', 'indirect_selection': 'eager', 'warn_error': 'None', 'profiles_dir': '/Users/sparelaptop4/Documents/fpl_analytics/code/fpl_dbt', 'log_cache_events': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'log_format': 'default', 'use_colors': 'True'}
+[0m11:17:19.407445 [error] [MainThread]: Encountered an error:
+Parsing Error
+  Env var required but not provided: 'PROJECT_ID'
+[0m11:17:19.408927 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.040374625, "process_in_blocks": "0", "process_kernel_time": 0.120765, "process_mem_max_rss": "113754112", "process_out_blocks": "0", "process_user_time": 0.466142}
+[0m11:17:19.409214 [debug] [MainThread]: Command `dbt run` failed at 11:17:19.409140 after 0.04 seconds
+[0m11:17:19.409359 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x118264770>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1181fe7b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x118254e20>]}
+[0m11:17:19.409491 [debug] [MainThread]: Flushing usage events
+[0m11:17:19.910160 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m11:20:05.795968 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106830ec0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107fc7750>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107fc79d0>]}
+
+
+============================== 11:20:05.798365 | 523efde9-6b5a-4344-8052-8ef5a28d218f ==============================
+[0m11:20:05.798365 [info ] [MainThread]: Running with dbt=1.11.6
+[0m11:20:05.798605 [debug] [MainThread]: running dbt with arguments {'log_cache_events': 'False', 'invocation_command': 'dbt run --select player_form', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'debug': 'False', 'partial_parse': 'True', 'indirect_selection': 'eager', 'static_parser': 'True', 'use_experimental_parser': 'False', 'fail_fast': 'False', 'log_path': '/Users/sparelaptop4/Documents/fpl_analytics/code/fpl_dbt/logs', 'profiles_dir': '/Users/sparelaptop4/Documents/fpl_analytics/code/fpl_dbt', 'no_print': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True', 'empty': 'False', 'version_check': 'True', 'quiet': 'False', 'use_colors': 'True', 'introspect': 'True', 'warn_error': 'None', 'write_json': 'True', 'cache_selected_only': 'False', 'target_path': 'None'}
+[0m11:20:05.800768 [error] [MainThread]: Encountered an error:
+Parsing Error
+  Env var required but not provided: 'BQ_DATASET'
+[0m11:20:05.802162 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.038510833, "process_in_blocks": "0", "process_kernel_time": 0.120083, "process_mem_max_rss": "114917376", "process_out_blocks": "0", "process_user_time": 0.468079}
+[0m11:20:05.802340 [debug] [MainThread]: Command `dbt run` failed at 11:20:05.802307 after 0.04 seconds
+[0m11:20:05.802451 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x120060640>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107ffef90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x120050f30>]}
+[0m11:20:05.802558 [debug] [MainThread]: Flushing usage events
+[0m11:20:08.351997 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m11:20:35.742925 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106708ec0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10766f750>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10766f9d0>]}
+
+
+============================== 11:20:35.745397 | 365b7fdd-caf6-4916-bec7-63bc81070652 ==============================
+[0m11:20:35.745397 [info ] [MainThread]: Running with dbt=1.11.6
+[0m11:20:35.745660 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'log_format': 'default', 'log_cache_events': 'False', 'profiles_dir': '/Users/sparelaptop4/Documents/fpl_analytics/code/fpl_dbt', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'debug': 'False', 'no_print': 'None', 'cache_selected_only': 'False', 'warn_error': 'None', 'write_json': 'True', 'static_parser': 'True', 'fail_fast': 'False', 'use_experimental_parser': 'False', 'log_path': '/Users/sparelaptop4/Documents/fpl_analytics/code/fpl_dbt/logs', 'invocation_command': 'dbt run --select player_form', 'target_path': 'None', 'version_check': 'True', 'introspect': 'True', 'empty': 'False', 'indirect_selection': 'eager', 'use_colors': 'True', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False'}
+[0m11:20:35.747956 [error] [MainThread]: Encountered an error:
+Parsing Error
+  Env var required but not provided: 'BQ_DATASET'
+[0m11:20:35.749313 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.03662675, "process_in_blocks": "0", "process_kernel_time": 0.115356, "process_mem_max_rss": "112574464", "process_out_blocks": "0", "process_user_time": 0.461659}
+[0m11:20:35.749489 [debug] [MainThread]: Command `dbt run` failed at 11:20:35.749456 after 0.04 seconds
+[0m11:20:35.749609 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10770c640>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1076a6f90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1076fcf30>]}
+[0m11:20:35.749726 [debug] [MainThread]: Flushing usage events
+[0m11:20:37.765069 [debug] [MainThread]: An error was encountered while trying to flush usage events

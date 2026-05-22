@@ -17,6 +17,7 @@ player_form AS (
         pd.player_name AS player,
         pd.player_image,
         ps.form,
+        pd.transfer_value,
         t.team_logo
     FROM player_data pd
     LEFT JOIN team_info t 
