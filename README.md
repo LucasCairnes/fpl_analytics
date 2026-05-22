@@ -1,16 +1,16 @@
 # ⚽ FPL Analytics:
 
-An Fantasy Premier League ELT pipeline built with Python, dbt, and Google Cloud Platform. 
+A Fantasy Premier League ELT pipeline built with Python, dbt, and Google Cloud Platform. 
 
 **[View the Looker Studio Dashboard Here](https://datastudio.google.com/u/0/reporting/e2ae6fe0-ee44-4414-9cac-730268780c6e/page/quJtF)**
 
 ## Project Overview
-Daily, this pipeline extracts player, team and fixture data from the Fantasy Premier League API with serverless architecture (Google Cloud Run). This data is then transformed with dbt, compiling roughly 300,000 data points into a dynamic Looker Studio dashboard that tracks player form, expected goals (xG), fixture difficulty, and more.
+This pipeline extracts player, team and fixture data daily from the Fantasy Premier League API with Google Cloud Run. This data is then transformed with dbt, compiling roughly 300,000 data points into a dynamic Looker Studio dashboard that tracks player form, expected goals, fixture difficulty, and more.
 
 ## Key Engineering Features
-* **Asynchronous Ingestion:** Used `asyncio` and `aiohttp` to asynchronously fetch player data, significantly reducing data collection time while safely navigating API rate limits.
-* **Robust Error Handling:** Built a fault-tolerant system that survives network instability and flaky APIs. Used `Tenacity` to protect against flaky apis with retry logic. Created a Dead Letter Queue to route failed requests to a BigQuery table without halting the main pipeline. Implemented robust and informative Google Cloud logging.
-* **Automation & ELT Architecture:** The pipeline containerised with Docker and deployed serverlessly on Google Cloud Run, enabling completely hands-off data collection. Once the data lands Google Cloud Storage, dbt orchestrates a 3-tier data model (raw, staging, curated) in BigQuery, utilising custom Jinja macros.
+* **Asynchronous Ingestion:** Utilised `asyncio` and `aiohttp` to asynchronously fetch player data, reducing data collection time while safeguarding against API rate limits.
+* **Robust Error Handling:** Used `Tenacity` to protect against api connection errors with retry logic. Created a Dead Letter Queue to route failed data requests to a BigQuery table without halting the main pipeline. Implemented robust and informative Google Cloud logging.
+* **Automation & ELT Architecture:** The pipeline is containerised with Docker and deployed serverlessly, enabling automatic data collection. Once the data lands in Google Cloud Storage, dbt orchestrates a 3-tier data model (raw, staging, curated) in BigQuery with the help of custom Jinja macros.
 
 ---
 
@@ -51,7 +51,7 @@ Before running the standard pipeline, execute the script to fetch the full playe
 * `python -m scripts.load_all_player_data`
 
 **5. Run the Main Pipeline:**
-Execute the main orchestrator to the rest of the data.
+Execute the main orchestrator for the rest of the data.
 * `python -m main`
 
 
