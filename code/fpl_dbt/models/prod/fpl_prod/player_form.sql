@@ -14,7 +14,8 @@ team_info AS (
 
 selection_info AS (
     SELECT * FROM {{ ref('cur_selection_info') }}
-)
+),
+
 player_form AS (
     SELECT
         pd.player_name AS player,
