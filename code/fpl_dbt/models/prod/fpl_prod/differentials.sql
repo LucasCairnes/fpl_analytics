@@ -24,7 +24,7 @@ differentials AS (
         ON t.player_id = sel.player_id
     LEFT JOIN stats s 
         ON t.player_id = s.player_id
-    WHERE sel.selected_by_percent < 0.05
+    WHERE sel.selected_by_percent < 5
 )
 
 SELECT * FROM differentials
