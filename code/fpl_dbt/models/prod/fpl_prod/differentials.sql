@@ -17,7 +17,7 @@ differentials AS (
         t.player_name AS player,
         t.position,
         t.player_image,
-        s.form,
+        ROUND(CAST(s.expected_goals AS FLOAT64) + CAST(s.expected_assists AS FLOAT64), 3) AS xgi,
         sel.selected_by_percent
     FROM taxonomies t
     LEFT JOIN selection sel 
