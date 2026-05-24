@@ -4,9 +4,8 @@ WITH player_data AS (
     SELECT * FROM {{ ref('cur_player_taxonomies') }}
 ),
 
-rolling_stats AS (
-    SELECT * FROM {{ ref('cur_player_five_gw_stats') }}
-    WHERE gameweek = (SELECT MAX(gameweek) FROM {{ ref('cur_player_five_gw_stats') }})
+player_stats AS (
+    SELECT * FROM {{ ref('cur_total_stats') }}
 ),
 
 selection_info AS (
@@ -28,17 +27,12 @@ captaincy_matrix AS (
         p.position,
         p.team_name,
         s.transfer_value,
-        ROUND(r.five_gw_xg + r.five_gw_xa, 3) AS five_gw_xgi,
-        ROUND(r.five_gw_xg, 3) AS five_gw_xg,
-        ROUND(r.five_gw_xa, 3) AS five_gw_xa,
-        t_opp.short_name AS next_opponent,
-        f.venue_1 AS next_match_venue,
-        CONCAT(t_opp.short_name, ' (', f.venue_1, ')') AS next_fixture_display,
-        ROUND(f.mean_difficulty_next_5, 2) AS mean_difficulty_next_5,
-        s.status
+        CAST(ps.form AS FLOAT64) AS form,
+        t_opp.team_logo AS next_opponent,
+        ROUND(f.mean_difficulty_next_5, 2) AS mean_difficulty_next_5
     FROM player_data p
-    INNER JOIN rolling_stats r 
-        ON p.player_id = r.player_id
+    INNER JOIN player_stats ps 
+        ON p.player_id = ps.player_id
     INNER JOIN selection_info s 
         ON p.player_id = s.player_id
     LEFT JOIN fixture_data f 
@@ -48,4 +42,4 @@ captaincy_matrix AS (
 )
 
 SELECT * FROM captaincy_matrix
-ORDER BY five_gw_xgi DESC
+ORDER BY form DESC
