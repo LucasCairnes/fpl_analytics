@@ -31,7 +31,7 @@ rotational_players AS (
     LEFT JOIN fixtures f
         ON p.team_name = f.team_name
     WHERE 
-        AND s.transfer_value <= 4.5
+        s.transfer_value <= 4.5
 )
 
 SELECT * FROM rotational_players
