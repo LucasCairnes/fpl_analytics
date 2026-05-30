@@ -1,36 +1,16 @@
-{{ config(materialized='table') }}
+{{ config(materialized='view') }}
 
-WITH player_data AS (
-    SELECT * FROM {{ ref('cur_player_taxonomies')}}
-),
-
-rolling_stats AS (
-    SELECT * FROM {{ ref('cur_player_five_gw_stats')}}
-),
-
-team_info AS (
-    SELECT * FROM {{ ref('cur_team_taxonomies') }} 
-),
-
-due_a_haul AS (
-    SELECT
-        p.player_name AS player,
-        p.player_image,
-        p.team_name AS team,
-        ti.team_logo,
-        p.position,
-        r.five_gw_goals AS goals,
-        r.five_gw_assists AS assists,
-        ROUND(r.five_gw_xg, 3) AS xG,
-        ROUND(r.five_gw_xa, 3) AS xA,
-        ROUND(r.xga_performance, 3) AS xGA_performance
-    FROM rolling_stats r
-    LEFT JOIN player_data p
-        ON r.player_id = p.player_id
-    LEFT JOIN team_info ti 
-        ON p.team_name = ti.team_name 
-    WHERE r.gameweek = (SELECT MAX(gameweek) FROM rolling_stats)
-    ORDER BY xga_performance ASC
-)
-
-SELECT * FROM due_a_haul
+SELECT
+    player,
+    player_image,
+    team_name AS team,
+    team_logo,
+    position,
+    five_gw_goals AS goals,
+    five_gw_assists AS assists,
+    five_gw_xg AS xG,
+    five_gw_xa AS xA,
+    xga_performance
+FROM {{ ref('obt_player_reporting') }}
+WHERE five_gw_goals IS NOT NULL
+ORDER BY xga_performance ASC

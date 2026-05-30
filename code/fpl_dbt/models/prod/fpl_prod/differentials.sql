@@ -1,30 +1,10 @@
-{{ config(materialized='table') }}
+{{ config(materialized='view') }}
 
-WITH taxonomies AS (
-    SELECT * FROM {{ ref('cur_player_taxonomies') }}
-),
-
-selection AS (
-    SELECT * FROM {{ ref('cur_selection_info') }}
-),
-
-stats AS (
-    SELECT * FROM {{ ref('cur_total_stats') }}
-),
-
-differentials AS (
-    SELECT
-        t.player_name AS player,
-        t.position,
-        t.player_image,
-        ROUND(CAST(s.expected_goals AS FLOAT64) + CAST(s.expected_assists AS FLOAT64), 3) AS xgi,
-        sel.selected_by_percent
-    FROM taxonomies t
-    LEFT JOIN selection sel 
-        ON t.player_id = sel.player_id
-    LEFT JOIN stats s 
-        ON t.player_id = s.player_id
-    WHERE sel.selected_by_percent < 5
-)
-
-SELECT * FROM differentials
+SELECT
+    player,
+    position,
+    player_image,
+    xgi,
+    selected_by_percent
+FROM {{ ref('obt_player_reporting') }}
+WHERE selected_by_percent < 5
