@@ -4,6 +4,7 @@ import sys
 from scripts.load_fpl_api_data import main as run_fpl_api_extraction
 from scripts.load_player_data import main as run_player_extraction
 from scripts.dbt_orchestrator import main as run_dbt_transforms
+from src.notifications.slack import send_slack_summary
 
 def main():
     root_logger = logging.getLogger()
@@ -28,16 +29,19 @@ def main():
     if not api_success or not player_success:
         logging.error("One or more pipelines failed. Stopping pipeline.")
         logging.shutdown()
+        send_slack_summary("failed", logging_context)
         sys.exit(1)
 
     dbt_success = run_dbt_transforms(logging_context)
 
     if not dbt_success:
         logging.shutdown()
+        send_slack_summary("failed", logging_context)
         sys.exit(1)
 
     logging.info("Pipeline finished successfully.")
     logging.shutdown()
+    send_slack_summary("success", logging_context)
     sys.exit(0)
 
 if __name__ == "__main__":
